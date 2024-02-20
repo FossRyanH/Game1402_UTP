@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : IPlayerState
+public class PlayerMoveState : PlayerBaseState
 {
-    PlayerController _player;
-
     float _currentSpeed;
     float _rotationDamping = 0.15f;
 
@@ -14,25 +12,30 @@ public class PlayerMoveState : IPlayerState
         this._player = player;
     }
 
-    public void EnterState()
+    public override void EnterState()
     {
         Debug.Log("Move State Entered");
-        _currentSpeed = _player.RunSpeed;
     }
 
-    public void UpdateState()
+    public override void UpdateState(float delta)
     {
         Vector3 movement = HandleMovement();
-        HandleRotation();
         Move(movement);
+        if (movement == Vector3.zero)
+        HandleRotation();
+        {
+            _player.StateMachine.TransitionTo(_player.StateMachine.IdleState);
+        }
     }
+
 
     Vector3 HandleMovement()
     {
         Vector3 motion = new Vector3();
         motion.x = _player.MovementVector.x;
-        motion.y = 0f;
         motion.z = _player.MovementVector.y;
+        motion.y = 0f;
+
 
         Vector3 forwardDir = _player.CameraFocusPoint.forward;
         Vector3 rightDir = _player.CameraFocusPoint.right;
@@ -45,7 +48,7 @@ public class PlayerMoveState : IPlayerState
 
     void Move(Vector3 inputVector)
     {
-        _player.Rb.velocity = inputVector * _currentSpeed;
+        _player.Rb.velocity = inputVector * MarkSpeed(_currentSpeed);
     }
 
     void HandleRotation()
@@ -62,5 +65,23 @@ public class PlayerMoveState : IPlayerState
         Quaternion playerRotation = Quaternion.Slerp(_player.transform.rotation, targetRotation, _rotationDamping * Time.deltaTime);
 
         _player.transform.rotation = playerRotation;
+    }
+
+    float MarkSpeed(float speed)
+    {
+        if (Mathf.Abs(_player.MovementVector.y) <= 1f || Mathf.Abs(_player.MovementVector.x) <= 1f)
+        {
+            speed = _player.RunSpeed;
+        }
+        else if (Mathf.Abs(_player.MovementVector.y) <= 0.5f || Mathf.Abs(_player.MovementVector.x) <= 0.5f)
+        {
+            speed = _player.WalkSpeed;
+        }
+        else
+        {
+            speed = 0f;
+        }
+
+        return speed;
     }
 }

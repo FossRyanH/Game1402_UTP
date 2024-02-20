@@ -1,5 +1,6 @@
-using System.Collections;
+    /*  */using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,9 +25,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float RunSpeed = 5f;
     [SerializeField]
-    public float JumpForce = 3.5f;
+    public float FallForce = 3.5f;
 
-    bool _isGrounded = false;
+    public bool IsGrounded;
     #endregion
 
     #region Misc Variables
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        StateMachine.InitState(StateMachine.IdleState);
+        StateMachine.InitializeState(StateMachine.IdleState);
     }
 
     void Update()
@@ -57,32 +58,22 @@ public class PlayerController : MonoBehaviour
     public void HandleMovement(Vector2 input)
     {
         MovementVector = input;
-
-        if (input == Vector2.zero) { return; }
         StateMachine.TransitionTo(StateMachine.MoveState);
-    }
 
-    // Processes the player jumping functionality to JumpState.
-    public void HandleJumpInput()
-    {
-        if (_isGrounded)
-        {
-            StateMachine.TransitionTo(StateMachine.JumpState);
-        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            _isGrounded = true;
-            Debug.Log($"Grounded is {_isGrounded}");
+            IsGrounded = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        _isGrounded = false;
+        IsGrounded = false;
+        Debug.Log($"Grounded is {IsGrounded}");
     }
 
     // On this action will enter the player into combat state.
@@ -94,5 +85,4 @@ public class PlayerController : MonoBehaviour
             
         }
     }
-
 }

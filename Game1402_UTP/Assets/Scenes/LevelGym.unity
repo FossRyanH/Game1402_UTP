@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465791, g: 0.4964133, b: 0.57481784, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -888,14 +888,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145193554}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.67559016, y: 0, z: 0, w: 0.7372774}
-  m_LocalPosition: {x: 0, y: 4.8219476, z: -0.87155885}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 0.16, y: 3.5202527, z: -7.3499994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2023417842}
   m_Father: {fileID: 79386092}
-  m_LocalEulerAnglesHint: {x: 85, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!114 &145193557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 564823896330445246}
+  m_Follow: {fileID: 664868271}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
@@ -2191,7 +2191,7 @@ GameObject:
   - component: {fileID: 255960060}
   - component: {fileID: 255960059}
   - component: {fileID: 255960058}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3919,13 +3919,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.67559016, y: -0, z: -0, w: 0.7372774}
-  m_LocalPosition: {x: 0, y: 4.8219476, z: -0.87155885}
+  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
+  m_LocalPosition: {x: 0.16, y: 3.5202527, z: -7.3499994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 79386092}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4139,7 +4139,7 @@ GameObject:
   - component: {fileID: 1039398280}
   - component: {fileID: 1039398279}
   - component: {fileID: 1039398278}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SmallLeftBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4492,7 +4492,7 @@ GameObject:
   - component: {fileID: 1044716632}
   - component: {fileID: 1044716631}
   - component: {fileID: 1044716630}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5693,7 +5693,7 @@ GameObject:
   - component: {fileID: 1171187617}
   - component: {fileID: 1171187616}
   - component: {fileID: 1171187615}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stairs (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9050,7 +9050,7 @@ GameObject:
   - component: {fileID: 1210531366}
   - component: {fileID: 1210531365}
   - component: {fileID: 1210531364}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bridge2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9403,7 +9403,7 @@ GameObject:
   - component: {fileID: 1239993191}
   - component: {fileID: 1239993190}
   - component: {fileID: 1239993189}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10120,7 +10120,7 @@ GameObject:
   - component: {fileID: 1255091662}
   - component: {fileID: 1255091661}
   - component: {fileID: 1255091660}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stairs (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12713,7 +12713,7 @@ GameObject:
   - component: {fileID: 1284865239}
   - component: {fileID: 1284865238}
   - component: {fileID: 1284865237}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SmallRightBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16208,7 +16208,7 @@ GameObject:
   - component: {fileID: 1600661721}
   - component: {fileID: 1600661720}
   - component: {fileID: 1600661719}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloorBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19005,7 +19005,7 @@ GameObject:
   - component: {fileID: 1985751964}
   - component: {fileID: 1985751963}
   - component: {fileID: 1985751962}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21640,8 +21640,8 @@ MonoBehaviour:
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.6
-  m_DeadZoneHeight: 0.6
+  m_DeadZoneWidth: 0.5
+  m_DeadZoneHeight: 0.5
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
@@ -22142,7 +22142,7 @@ Transform:
   m_GameObject: {fileID: 909015722718264068}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.009999752, z: 0}
+  m_LocalPosition: {x: 0.16, y: 0.009999752, z: -2.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22177,7 +22177,7 @@ Transform:
   m_GameObject: {fileID: 7872224051550943474}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.565, z: 0}
+  m_LocalPosition: {x: -0, y: 8.22, z: 2.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22224,6 +22224,7 @@ GameObject:
   - component: {fileID: 564823896330445246}
   - component: {fileID: 909015722718264069}
   - component: {fileID: 909015722718264074}
+  - component: {fileID: 909015722718264075}
   - component: {fileID: 909015722718264071}
   - component: {fileID: 909015722718264070}
   - component: {fileID: 909015722718264073}
@@ -22252,7 +22253,8 @@ MonoBehaviour:
   MovementVector: {x: 0, y: 0}
   WalkSpeed: 1.25
   RunSpeed: 5
-  JumpForce: 3.5
+  FallForce: 3.5
+  IsGrounded: 0
 --- !u!135 &909015722718264070
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22273,7 +22275,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.25
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!136 &909015722718264071
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22355,6 +22357,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c631a88951c8d2f4593d3abbd9284318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &909015722718264075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909015722718264068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d16618c98f6b243bfb85fe706a0720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1012473139060956131

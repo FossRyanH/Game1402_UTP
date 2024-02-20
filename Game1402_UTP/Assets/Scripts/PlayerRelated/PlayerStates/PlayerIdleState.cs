@@ -2,23 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : IPlayerState
+public class PlayerIdleState : PlayerBaseState
 {
-    PlayerController _player;
-
-    readonly int LocomotionHash = Animator.StringToHash("Locomotion");
-
-    float _crossFadeDuration = 0.1f;
-
     public PlayerIdleState(PlayerController player)
     {
         this._player = player;
     }
 
-    public void EnterState()
+    public override void EnterState()
     {
         Debug.Log("Entering Idle State");
-        _player.Animator.CrossFadeInFixedTime(LocomotionHash, _crossFadeDuration);
+    }
+
+    public override void UpdateState(float delta)
+    {
+        if (Mathf.Abs(_player.MovementVector.x) > 0.1f || Mathf.Abs(_player.MovementVector.y) > 0.1f)
+        {
+            _player.StateMachine.TransitionTo(_player.StateMachine.MoveState);
+        }
+    }
+
+    public override void ExitState()
+    {
+        Debug.Log("Leaving Idle State");
     }
 
 }
