@@ -7,7 +7,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region Components
-    public Rigidbody Rb;
+    public CharacterController Controller;
+    public ForceReciever Force;
     [SerializeField]
     public Animator Animator { get; private set; }
     public PlayerStateMachine StateMachine;  
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float RunSpeed = 5f;
     [SerializeField]
-    public float FallForce = 3.5f;
+    public float FallForce = 2.5f;
 
     public bool IsGrounded;
     #endregion
@@ -36,7 +37,8 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        Rb = GetComponent<Rigidbody>();
+        Controller = GetComponent<CharacterController>();
+        Force = GetComponent<ForceReciever>();
         _jumpCollider = GetComponent<SphereCollider>();
         _jumpCollider.isTrigger = true;
 

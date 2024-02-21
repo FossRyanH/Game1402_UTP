@@ -6,15 +6,24 @@ public class ForceReciever : MonoBehaviour
 {
     float _verticalVelocity;
     PlayerController _player;
+    CharacterController _controller;
+
+    public Vector3 Movement => Vector3.up * _verticalVelocity;
 
     void Awake()
     {
         _player = GetComponent<PlayerController>();
+        _controller = GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        if (_verticalVelocity < 0f && _player.IsGrounded)
+        GravityApplication();
+    }
+
+    void GravityApplication()
+    {
+        if (_verticalVelocity < 0f && _controller.isGrounded)
         {
             _verticalVelocity = Physics.gravity.y * Time.deltaTime;
         }

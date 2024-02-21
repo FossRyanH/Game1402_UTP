@@ -36,19 +36,18 @@ public class PlayerMoveState : PlayerBaseState
         motion.z = _player.MovementVector.y;
         motion.y = 0f;
 
-
         Vector3 forwardDir = _player.CameraFocusPoint.forward;
         Vector3 rightDir = _player.CameraFocusPoint.right;
 
-        forwardDir.y = 0f;
         rightDir.y = 0f;
+        forwardDir.y = 0f;
 
-        return forwardDir * motion.z + rightDir * motion.x;
+        return motion.z * forwardDir + motion.x * rightDir;
     }
 
     void Move(Vector3 inputVector)
     {
-        _player.Rb.velocity = inputVector * MarkSpeed(_currentSpeed);
+        _player.Controller.Move((inputVector + _player.Force.Movement) * MarkSpeed(_currentSpeed) * Time.deltaTime);
     }
 
     void HandleRotation()
@@ -59,7 +58,9 @@ public class PlayerMoveState : PlayerBaseState
         targetDir.y = 0f;
 
         if (targetDir == Vector3.zero)
+        {
             targetDir = _player.transform.forward;
+        }
         
         Quaternion targetRotation = Quaternion.LookRotation(targetDir);
         Quaternion playerRotation = Quaternion.Slerp(_player.transform.rotation, targetRotation, _rotationDamping * Time.deltaTime);
