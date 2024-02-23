@@ -889,7 +889,7 @@ Transform:
   m_GameObject: {fileID: 145193554}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0.16, y: 3.2302537, z: -7.35}
+  m_LocalPosition: {x: 0.16000023, y: 3.2302537, z: -7.3500004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -908,7 +908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a90ff9f7ab8887342a5c2a834fdd0b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_YPosition: 13
+  m_YPosition: 10
 --- !u!114 &145193558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -930,7 +930,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 664868271}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -3893,7 +3893,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -3920,7 +3920,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0.16, y: 3.2302537, z: -7.35}
+  m_LocalPosition: {x: 0.16000023, y: 3.2302537, z: -7.3500004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21640,12 +21640,12 @@ MonoBehaviour:
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.5
-  m_DeadZoneHeight: 0.5
+  m_DeadZoneWidth: 0.3
+  m_DeadZoneHeight: 0.3
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneWidth: 0.65
+  m_SoftZoneHeight: 0.65
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -22255,7 +22255,7 @@ MonoBehaviour:
   WalkSpeed: 1.25
   RunSpeed: 5
   FallForce: 2.5
-  IsGrounded: 0
+  IsAttacking: 0
 --- !u!135 &909015722718264070
 SphereCollider:
   m_ObjectHideFlags: 0

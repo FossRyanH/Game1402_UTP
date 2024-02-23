@@ -27,12 +27,16 @@ public class PlayerController : MonoBehaviour
     public float RunSpeed = 5f;
     [SerializeField]
     public float FallForce = 2.5f;
-
-    public bool IsGrounded;
+    [SerializeField]
+    public float DodgeTimer = 0.5f;
     #endregion
 
     #region Misc Variables
-    bool _isInCombat = false;
+    public bool IsAttacking = false;
+    [SerializeField]
+    public float DodgeLength = 2f;
+    [SerializeField]
+    public float DodgeDuration = 1.25f;
     #endregion
 
     void Awake()
@@ -64,27 +68,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
+    public void ProcessAttack(bool isAttacking)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (isAttacking)
         {
-            IsGrounded = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        IsGrounded = false;
-        Debug.Log($"Grounded is {IsGrounded}");
-    }
-
-    // On this action will enter the player into combat state.
-    public void IsInCombat(bool inCombat)
-    {
-        _isInCombat = inCombat;
-        if (inCombat)
-        {
-            
+            StateMachine.TransitionTo(StateMachine.AttackState);
         }
     }
 }
