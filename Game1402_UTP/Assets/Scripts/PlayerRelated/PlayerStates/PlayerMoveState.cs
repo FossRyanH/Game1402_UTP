@@ -2,65 +2,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : IPlayerState
+public class PlayerMoveState : PlayerBaseState
 {
-    PlayerController _player;
-
     float _currentSpeed;
-    float _rotationDamping = 0.15f;
+    // Handles the "smoothness" of rotating in whatever direction is being fed into the movement input.
+    float _rotationDamping = 10f;
 
     public PlayerMoveState(PlayerController player)
     {
         this._player = player;
     }
 
-    public void EnterState()
+    public override void EnterState()
     {
         Debug.Log("Move State Entered");
-        _currentSpeed = _player.RunSpeed;
     }
 
-    public void UpdateState()
+    public override void UpdateState(float delta)
     {
         Vector3 movement = HandleMovement();
-        HandleRotation();
         Move(movement);
+        FaceDirection(movement);
+        // If there's no movement being input the player returns to the Idle state.
+        if (movement == Vector3.zero)
+        {
+            _player.StateMachine.TransitionTo(_player.StateMachine.IdleState);
+        }
     }
 
+    // Set the input of the players vector2 to a vector 3 plane allowing player to actually move in the world.
     Vector3 HandleMovement()
     {
         Vector3 motion = new Vector3();
         motion.x = _player.MovementVector.x;
-        motion.y = 0f;
         motion.z = _player.MovementVector.y;
+        motion.y = 0f;
 
-        Vector3 forwardDir = _player.CameraFocusPoint.forward;
-        Vector3 rightDir = _player.CameraFocusPoint.right;
-
-        forwardDir.y = 0f;
-        rightDir.y = 0f;
-
-        return forwardDir * motion.z + rightDir * motion.x;
+        return motion;
     }
 
+    // Processes the player's movement and multiplies it by the value depending on the value of the input
     void Move(Vector3 inputVector)
     {
-        _player.Rb.velocity = inputVector * _currentSpeed;
+        _player.Controller.Move((inputVector + _player.Force.Movement) * MarkSpeed(_currentSpeed) * Time.deltaTime);
     }
 
-    void HandleRotation()
+    // faces the player in the direction of input. Exmaple W faces forward, D to teh right... etc
+    void FaceDirection(Vector3 inputDir)
     {
-        Vector3 targetDir = Vector3.zero;
-        targetDir = _player.CameraFocusPoint.forward * _player.MovementVector.y;
-        targetDir.Normalize();
-        targetDir.y = 0f;
+        _player.transform.rotation = Quaternion.Lerp(_player.transform.rotation, Quaternion.LookRotation(inputDir), _rotationDamping * Time.deltaTime);
+    }
 
-        if (targetDir == Vector3.zero)
-            targetDir = _player.transform.forward;
-        
-        Quaternion targetRotation = Quaternion.LookRotation(targetDir);
-        Quaternion playerRotation = Quaternion.Slerp(_player.transform.rotation, targetRotation, _rotationDamping * Time.deltaTime);
+    // Depending on the value of input changes player speed accordingly
+    float MarkSpeed(float speed)
+    {
+        if (Mathf.Abs(_player.MovementVector.y) <= 1f || Mathf.Abs(_player.MovementVector.x) <= 1f)
+        {
+            speed = _player.RunSpeed;
+        }
+        else if (Mathf.Abs(_player.MovementVector.y) <= 0.5f || Mathf.Abs(_player.MovementVector.x) <= 0.5f)
+        {
+            speed = _player.WalkSpeed;
+        }
+        else
+        {
+            speed = 0f;
+        }
 
-        _player.transform.rotation = playerRotation;
+        return speed;
     }
 }

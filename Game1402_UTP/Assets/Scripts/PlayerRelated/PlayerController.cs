@@ -1,12 +1,14 @@
-using System.Collections;
+    /*  */using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     #region Components
-    public Rigidbody Rb;
+    public CharacterController Controller;
+    public ForceReciever Force;
     [SerializeField]
     public Animator Animator { get; private set; }
     public PlayerStateMachine StateMachine;  
@@ -24,18 +26,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float RunSpeed = 5f;
     [SerializeField]
-    public float JumpForce = 3.5f;
-
-    bool _isGrounded = false;
+    public float FallForce = 2.5f;
+    [SerializeField]
+    public float DodgeTimer = 0.5f;
     #endregion
 
     #region Misc Variables
-    bool _isInCombat = false;
+    public bool IsAttacking = false;
+    [SerializeField]
+    public float DodgeLength = 2f;
+    [SerializeField]
+    public float DodgeDuration = 1.25f;
     #endregion
 
     void Awake()
     {
-        Rb = GetComponent<Rigidbody>();
+        Controller = GetComponent<CharacterController>();
+        Force = GetComponent<ForceReciever>();
         _jumpCollider = GetComponent<SphereCollider>();
         _jumpCollider.isTrigger = true;
 
@@ -45,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        StateMachine.InitState(StateMachine.IdleState);
+        StateMachine.InitializeState(StateMachine.IdleState);
     }
 
     void Update()
@@ -57,42 +64,15 @@ public class PlayerController : MonoBehaviour
     public void HandleMovement(Vector2 input)
     {
         MovementVector = input;
-
-        if (input == Vector2.zero) { return; }
         StateMachine.TransitionTo(StateMachine.MoveState);
+
     }
 
-    // Processes the player jumping functionality to JumpState.
-    public void HandleJumpInput()
+    public void ProcessAttack(bool isAttacking)
     {
-        if (_isGrounded)
+        if (isAttacking)
         {
-            StateMachine.TransitionTo(StateMachine.JumpState);
+            StateMachine.TransitionTo(StateMachine.AttackState);
         }
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            _isGrounded = true;
-            Debug.Log($"Grounded is {_isGrounded}");
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        _isGrounded = false;
-    }
-
-    // On this action will enter the player into combat state.
-    public void IsInCombat(bool inCombat)
-    {
-        _isInCombat = inCombat;
-        if (inCombat)
-        {
-            
-        }
-    }
-
 }
