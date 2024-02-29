@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerBaseState
 {
+    readonly int _idleHash = Animator.StringToHash("Locomotion");
+    float _crossFadeDuration = 0.1f;
+
     public PlayerIdleState(PlayerController player)
     {
         this._player = player;
@@ -12,6 +15,8 @@ public class PlayerIdleState : PlayerBaseState
     public override void EnterState()
     {
         Debug.Log("Entering Idle State");
+        _player.Animator.CrossFadeInFixedTime(_idleHash, _crossFadeDuration);
+        _player.Animator.SetFloat("YMovement", 0f);
     }
 
     public override void UpdateState(float delta)

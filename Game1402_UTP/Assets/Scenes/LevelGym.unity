@@ -14333,7 +14333,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RogueHooded
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: bc158edbefa39e7479f376428705c167, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22285,8 +22286,8 @@ GameObject:
   - component: {fileID: 909015722718264075}
   - component: {fileID: 909015722718264071}
   - component: {fileID: 909015722718264070}
-  - component: {fileID: 909015722718264073}
   - component: {fileID: 909015722718264076}
+  - component: {fileID: 909015722718264077}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -22361,27 +22362,6 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
---- !u!95 &909015722718264073
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909015722718264068}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0a3537757727b764386663defe9a8f2d, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &909015722718264074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22432,6 +22412,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!95 &909015722718264077
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909015722718264068}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: bc158edbefa39e7479f376428705c167, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0fa866e1505068f468c7846bf22d283e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1012473139060956131
 Transform:
   m_ObjectHideFlags: 0

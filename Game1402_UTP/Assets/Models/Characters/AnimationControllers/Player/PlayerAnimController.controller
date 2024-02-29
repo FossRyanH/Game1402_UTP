@@ -88,7 +88,7 @@ AnimatorController:
   m_AnimatorParameters:
   - m_Name: YMovement
     m_Type: 1
-    m_DefaultFloat: 0.47
+    m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -238,7 +238,7 @@ BlendTree:
     m_Motion: {fileID: 3174661419259135242, guid: bc158edbefa39e7479f376428705c167, type: 3}
     m_Threshold: 0.5
     m_Position: {x: 0, y: 0.5}
-    m_TimeScale: 1
+    m_TimeScale: 5
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
@@ -246,7 +246,7 @@ BlendTree:
     m_Motion: {fileID: -1640158340307531623, guid: bc158edbefa39e7479f376428705c167, type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 1}
-    m_TimeScale: 1
+    m_TimeScale: 5
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
