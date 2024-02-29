@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    // meant to be overriden to add functionality.
     public virtual void Interact() {}
 }
