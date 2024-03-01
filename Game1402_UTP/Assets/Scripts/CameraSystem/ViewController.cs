@@ -8,7 +8,7 @@ public class ViewController : MonoBehaviour
     Transform targetTransform;
 
     Camera mainCamera;
-    private RaycastHit[] hits = new RaycastHit[5];
+    private RaycastHit[] hits = new RaycastHit[5]; //size of elements raycast can hit and store on buffer
 
     List<Transform> currentObjectsHitted;
     List<Transform> pastObjectsHitted;
