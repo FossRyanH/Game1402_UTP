@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
     public void ProcessAttack(bool isAttacking)
     {
+        this.IsAttacking = isAttacking;
         // Will only attack if the input for attack is trigger *and* the player has the ability to perform the attack.
         if (isAttacking && CanAttack)
         {
@@ -94,7 +95,6 @@ public class PlayerController : MonoBehaviour
         if (other.GetComponent<Interactable>() != null)
         {
             other.GetComponent<Interactable>().Interact();
-            Animator.CrossFadeInFixedTime("Interact", 0.1f);
         }
     }
 }
