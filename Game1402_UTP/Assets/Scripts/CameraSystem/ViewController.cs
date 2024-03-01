@@ -42,7 +42,7 @@ public class ViewController : MonoBehaviour
             if (rend)
             {
                 Color tempColor = rend.material.color;
-                tempColor.a = 0.3F;
+                tempColor.a = 0.3f;
                 rend.material.color = tempColor;
                 currentObjectsHitted.Add(hit.transform);
             }
@@ -56,7 +56,7 @@ public class ViewController : MonoBehaviour
             if (rend && !currentObjectsHitted.Contains(pastHit))
             {
                 Color tempColor = rend.material.color;
-                tempColor.a = 1F;
+                tempColor.a = 1f;
                 rend.material.color = tempColor;
             }
         }
