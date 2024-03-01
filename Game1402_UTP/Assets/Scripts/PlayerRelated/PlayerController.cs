@@ -11,8 +11,7 @@ public class PlayerController : MonoBehaviour
     public ForceReciever Force;
     [SerializeField]
     public Animator Animator { get; private set; }
-    public PlayerStateMachine StateMachine;  
-    SphereCollider _jumpCollider;
+    public PlayerStateMachine StateMachine;
     [SerializeField]
     public Transform CameraFocusPoint;
     #endregion
@@ -37,14 +36,14 @@ public class PlayerController : MonoBehaviour
     public float DodgeLength = 2f;
     [SerializeField]
     public float DodgeDuration = 1.25f;
+    [SerializeField]
+    float _interactDistance = 0.75f;
     #endregion
 
     void Awake()
     {
         Controller = GetComponent<CharacterController>();
         Force = GetComponent<ForceReciever>();
-        _jumpCollider = GetComponent<SphereCollider>();
-        _jumpCollider.isTrigger = true;
 
         StateMachine = new PlayerStateMachine(this);
         Animator = GetComponent<Animator>();
@@ -73,6 +72,26 @@ public class PlayerController : MonoBehaviour
         if (isAttacking)
         {
             StateMachine.TransitionTo(StateMachine.AttackState);
+        }
+    }
+
+    // Handles the player interacting with doors, chests..etc
+    public void Interaction()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, _interactDistance))
+        {
+            Interact(hit.collider);
+        }
+    }
+
+    void Interact(Collider other)
+    {
+        if (other.GetComponent<Interactable>() != null)
+        {
+            other.GetComponent<Interactable>().Interact();
         }
     }
 }

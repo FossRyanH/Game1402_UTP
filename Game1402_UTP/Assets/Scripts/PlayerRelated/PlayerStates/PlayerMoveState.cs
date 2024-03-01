@@ -17,7 +17,7 @@ public class PlayerMoveState : PlayerBaseState
     float _animatorDampTime = 0.1f;
     float _rotationDamping = 12f;
     float _currentSpeed;    
-    // Handles the "smoothness" of rotating in whatever direction is being fed into the movement input.
+
 
     public PlayerMoveState(PlayerController player)
     {
@@ -37,6 +37,7 @@ public class PlayerMoveState : PlayerBaseState
         Move(movement);
         FaceDirection(movement);
         UpdateAnimations();
+        
         //  If input is nothing, transition the player back to the idle state
         if (movement == Vector3.zero && _currentSpeed == 0f)
         {
