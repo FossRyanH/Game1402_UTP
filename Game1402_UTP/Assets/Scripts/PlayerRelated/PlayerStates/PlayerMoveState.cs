@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Callbacks;
+
 using UnityEngine;
 
 public class PlayerMoveState : PlayerBaseState
@@ -9,7 +7,6 @@ public class PlayerMoveState : PlayerBaseState
     // sets the String from the animation tree (or animation name it will do both) to an intHash
     //  saves from using string references in multiple places
     readonly int _forwardHash = Animator.StringToHash("YMovement");
-    readonly int _strafeHash = Animator.StringToHash("XMovement");
     readonly int _locomotionHash = Animator.StringToHash("Locomotion");
     // Sets the float name in the animator to the string value listed in the variable.
     float _animatorDampTime = 0.1f;
@@ -26,7 +23,6 @@ public class PlayerMoveState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Move State Entered");
         // Sets the animator to update animations over a span of time to make a smooth transition of animations.
         _player.Animator.CrossFadeInFixedTime(_locomotionHash, _animatorDampTime);
     }
@@ -59,16 +55,16 @@ public class PlayerMoveState : PlayerBaseState
     // Processes the player's movement and multiplies it by the value depending on the value of the input
     void Move(Vector3 inputVector)
     {
-        _player.Controller.Move((inputVector + _player.Force.Movement) * _currentSpeed * Time.fixedDeltaTime);
+        _player.Controller.Move((inputVector + _player.Force.Movement) * (_currentSpeed * Time.fixedDeltaTime));
     }
 
-    // faces the player in the direction of input. Exmaple W faces forward, D to teh right... etc
+    // faces the player in the direction of input. Example W faces forward, D to the right... etc
     void FaceDirection(Vector3 inputDir)
     {
         _player.transform.rotation = Quaternion.Lerp(_player.transform.rotation, Quaternion.LookRotation(inputDir), _rotationDamping * Time.fixedDeltaTime);
     }
 
-    // Updates animator depedning on player input, also sets the movement speed.
+    // Updates animator depending on player input, also sets the movement speed.
     void UpdateAnimations()
     {
         if (_player.MovementVector == Vector2.zero)

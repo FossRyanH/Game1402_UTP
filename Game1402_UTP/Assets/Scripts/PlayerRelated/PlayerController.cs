@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     #region Misc Variables
     public bool IsAttacking = false;
+    public bool CanAttack = true;
     [SerializeField]
     public float DodgeLength = 2f;
     [SerializeField]
@@ -69,7 +70,8 @@ public class PlayerController : MonoBehaviour
 
     public void ProcessAttack(bool isAttacking)
     {
-        if (isAttacking)
+        // Will only attack if the input for attack is trigger *and* the player has the ability to perform the attack.
+        if (isAttacking && CanAttack)
         {
             StateMachine.TransitionTo(StateMachine.AttackState);
         }
