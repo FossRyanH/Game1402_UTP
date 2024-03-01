@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class PlayerMoveState : PlayerBaseState
@@ -7,15 +8,16 @@ public class PlayerMoveState : PlayerBaseState
     #region Animation Variables
     // sets the String from the animation tree (or animation name it will do both) to an intHash
     //  saves from using string references in multiple places
+    readonly int _forwardHash = Animator.StringToHash("YMovement");
+    readonly int _strafeHash = Animator.StringToHash("XMovement");
     readonly int _locomotionHash = Animator.StringToHash("Locomotion");
     // Sets the float name in the animator to the string value listed in the variable.
-    readonly int _forwardHash = Animator.StringToHash("YMovement");
-    float _animatorDampTime = 0.1f;
     #endregion
 
-    float _currentSpeed;
-    // Handles the "smoothness" of rotating in whatever direction is being fed into the movement input.
+    float _animatorDampTime = 0.1f;
     float _rotationDamping = 12f;
+    float _currentSpeed;    
+
 
     public PlayerMoveState(PlayerController player)
     {
@@ -35,8 +37,9 @@ public class PlayerMoveState : PlayerBaseState
         Move(movement);
         FaceDirection(movement);
         UpdateAnimations();
+        
         //  If input is nothing, transition the player back to the idle state
-        if (movement == Vector3.zero)
+        if (movement == Vector3.zero && _currentSpeed == 0f)
         {
             _player.StateMachine.TransitionTo(_player.StateMachine.IdleState);
         }
