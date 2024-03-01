@@ -70,7 +70,6 @@ public class PlayerController : MonoBehaviour
 
     public void ProcessAttack(bool isAttacking)
     {
-        this.IsAttacking = isAttacking;
         // Will only attack if the input for attack is trigger *and* the player has the ability to perform the attack.
         if (isAttacking && CanAttack)
         {

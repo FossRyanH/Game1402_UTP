@@ -37,6 +37,6 @@ public class PlayerAttackState : PlayerBaseState
     // Sets the IsAttacking to false after the attack is complete
     public override void ExitState()
     {
-        _player.IsAttacking = false;
+        _player.CanAttack = true;
     }
 }
