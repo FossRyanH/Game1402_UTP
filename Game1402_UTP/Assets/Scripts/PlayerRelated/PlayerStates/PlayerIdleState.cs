@@ -14,7 +14,6 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Entering Idle State");
         _player.Animator.CrossFadeInFixedTime(_idleHash, _crossFadeDuration);
         _player.Animator.SetFloat("YMovement", 0f);
     }
@@ -29,7 +28,5 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void ExitState()
     {
-        Debug.Log("Leaving Idle State");
     }
-
 }
