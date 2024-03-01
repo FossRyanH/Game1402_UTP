@@ -6,7 +6,7 @@ public class ViewController : MonoBehaviour
     {
         Renderer rend = other.gameObject.GetComponent<Renderer>();
         Color tempColor = rend.material.color;
-        tempColor.a = 0.3F;
+        tempColor.a = 0.3f;
         rend.material.color = tempColor;
     }
 
@@ -14,7 +14,7 @@ public class ViewController : MonoBehaviour
     {
         Renderer rend = other.gameObject.GetComponent<Renderer>();
         Color tempColor = rend.material.color;
-        tempColor.a = 1F;
+        tempColor.a = 1f;
         rend.material.color = tempColor;
     }
 }

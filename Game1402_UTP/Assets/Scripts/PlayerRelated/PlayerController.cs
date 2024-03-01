@@ -21,9 +21,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public Vector2 MovementVector = new Vector2();
     [SerializeField]
-    public float WalkSpeed = 1.25f;
+    public float WalkSpeed = 0.5f;
     [SerializeField]
-    public float RunSpeed = 5f;
+    public float RunSpeed = 2f;
     [SerializeField]
     public float FallForce = 2.5f;
     [SerializeField]
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float DodgeDuration = 1.25f;
     [SerializeField]
-    float _interactDistance = 0.75f;
+    float _interactDistance = 1.5f;
     #endregion
 
     void Awake()

@@ -12,10 +12,10 @@ public class PlayerMoveState : PlayerBaseState
     readonly int _strafeHash = Animator.StringToHash("XMovement");
     readonly int _locomotionHash = Animator.StringToHash("Locomotion");
     // Sets the float name in the animator to the string value listed in the variable.
+    float _animatorDampTime = 0.1f;
     #endregion
 
-    float _animatorDampTime = 0.1f;
-    float _rotationDamping = 12f;
+    float _rotationDamping = 7.5f;
     float _currentSpeed;    
 
 
@@ -65,7 +65,7 @@ public class PlayerMoveState : PlayerBaseState
     // faces the player in the direction of input. Exmaple W faces forward, D to teh right... etc
     void FaceDirection(Vector3 inputDir)
     {
-        _player.transform.rotation = Quaternion.Lerp(_player.transform.rotation, Quaternion.LookRotation(inputDir), _rotationDamping * Time.deltaTime);
+        _player.transform.rotation = Quaternion.Lerp(_player.transform.rotation, Quaternion.LookRotation(inputDir), _rotationDamping * Time.fixedDeltaTime);
     }
 
     // Updates animator depedning on player input, also sets the movement speed.
@@ -85,10 +85,6 @@ public class PlayerMoveState : PlayerBaseState
         {
             _currentSpeed = _player.WalkSpeed;
             _player.Animator.SetFloat(_forwardHash, 0.5f, _animatorDampTime, Time.fixedDeltaTime);
-        }
-        else
-        {
-            _currentSpeed = 0f;
         }
     }
 }
