@@ -94,6 +94,7 @@ public class PlayerController : MonoBehaviour
         if (other.GetComponent<Interactable>() != null)
         {
             other.GetComponent<Interactable>().Interact();
+            Animator.CrossFadeInFixedTime("Interact", 0.1f);
         }
     }
 }
