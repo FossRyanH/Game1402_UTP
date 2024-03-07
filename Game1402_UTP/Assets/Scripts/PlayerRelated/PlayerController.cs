@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     #region Misc Variables
     public bool IsAttacking = false;
     public bool CanAttack = true;
+    public bool IsDodging = false;
     [SerializeField]
     public float DodgeLength = 2f;
     [SerializeField]
