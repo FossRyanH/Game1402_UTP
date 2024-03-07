@@ -31,14 +31,20 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Misc Variables
+    [SerializeField]
+    float _interactDistance = 1.5f;
+    #endregion
+
+    #region Combat Variables
+    [field: Header("Combat Related Variables")]
+    [field: SerializeField]
+    public AttackData Attack { get; private set; }
     public bool IsAttacking = false;
     public bool CanAttack = true;
     [SerializeField]
     public float DodgeLength = 2f;
     [SerializeField]
     public float DodgeDuration = 1.25f;
-    [SerializeField]
-    float _interactDistance = 1.5f;
     #endregion
 
     void Awake()

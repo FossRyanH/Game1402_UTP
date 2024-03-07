@@ -4,33 +4,31 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerBaseState
 {
-    private float _attackCooldown = 0.65f;
+    #region Variables
+    AttackData _attack;
     private float _attackTimer;
-    private readonly int _attackAnimHash = Animator.StringToHash("1HAttack");
-    private float _crossFadeDuration = 0.1f;
+    #endregion
     
     public PlayerAttackState(PlayerController player)
     {
         this._player = player;
+        this._attack = player.Attack;
     }
 
     public override void EnterState()
     {
-        _player.Animator.CrossFadeInFixedTime(_attackAnimHash, _crossFadeDuration);
-        _player.IsAttacking = true;
         _attackTimer = 0f;
         _player.CanAttack = false;
+        _player.Animator.CrossFadeInFixedTime(_attack.AttackName, _attack.AttackTransition);
     }
 
     public override void UpdateState(float delta)
     {
         _attackTimer += delta;
-        // Once the attack timer reaches the cooldown, sets the players ability to initiate an attack to true
-        // Then transitions back to idle.
-        if (_attackTimer >= _attackCooldown)
+
+        if (_attackTimer >= _attack.AttackCooldown)
         {
             _player.CanAttack = true;
-            _player.StateMachine.TransitionTo(_player.StateMachine.IdleState);
         }
     }
 
