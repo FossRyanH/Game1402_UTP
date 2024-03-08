@@ -15,6 +15,7 @@ public class PlayerInputManager : MonoBehaviour
             _inputActions.PlayerMovement.Move.performed += i => _playerController.HandleMovement(i.ReadValue<Vector2>());
             _inputActions.PlayerAction.Attack.performed += i => _playerController.ProcessAttack(true);
             _inputActions.PlayerAction.Interact.performed += i => _playerController.Interaction();
+            _inputActions.PlayerAction.Dodge.performed += i => _playerController.ProcessDodge(true);
         }
         _inputActions.Enable();
     }
