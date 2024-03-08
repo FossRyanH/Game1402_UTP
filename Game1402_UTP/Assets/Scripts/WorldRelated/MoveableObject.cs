@@ -11,6 +11,7 @@ public class MoveableObject : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody body = hit.collider.attachedRigidbody;
+        Debug.Log("name:" + hit.gameObject.name);
 
         #region approach 1
         // no rigidbody  
