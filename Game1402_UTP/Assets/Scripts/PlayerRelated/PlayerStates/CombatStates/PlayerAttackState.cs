@@ -29,6 +29,14 @@ public class PlayerAttackState : PlayerBaseState
         if (_attackTimer >= _attack.AttackCooldown)
         {
             _player.CanAttack = true;
+            if (_player.Targeter.CurrentTarget == null)
+            {
+                _player.StateMachine.TransitionTo(_player.StateMachine.LocomotionState);
+            }
+            else
+            {
+                _player.StateMachine.TransitionTo(_player.StateMachine.TargetingState);
+            }
         }
     }
 
