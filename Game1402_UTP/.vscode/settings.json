@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Game1402_UTP.sln"
+    "dotnet.defaultSolution": "Game1402_UTP.sln",
+    "dotnet.preferCSharpExtension": true
 }

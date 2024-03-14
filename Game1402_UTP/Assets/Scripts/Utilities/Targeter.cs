@@ -33,7 +33,7 @@ public class Targeter : MonoBehaviour
         }
     }
 
-    public bool SelectTarget()
+    public bool HasTarget()
     {
         if (_targets.Count == 0)
         {
