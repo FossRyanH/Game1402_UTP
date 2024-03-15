@@ -11,8 +11,8 @@ public class PlayerInputManager : MonoBehaviour
     void Awake()
     {
         _playerController = GetComponent<PlayerController>();
-        _pauseMenu = FindObjectOfType<PauseMenu>();
-    }
+        _pauseMenu = FindObjectOfType<PauseMenu>();
+    }
     void OnEnable()
     {
         if (_inputActions == null)
@@ -22,7 +22,7 @@ public class PlayerInputManager : MonoBehaviour
             _inputActions.PlayerAction.Attack.performed += i => _playerController.ProcessAttack(true);
             _inputActions.PlayerAction.Interact.performed += i => _playerController.Interaction();
             _inputActions.PlayerAction.Dodge.performed += i => _playerController.ProcessDodge(true);
-            _inputActions.PlayerAction.Pause.performed += i => _pauseMenu.HandlePauseMenu();
+            _inputActions.PlayerAction.Pause.performed += i => _pauseMenu.HandlePauseMenu();
         }
         _inputActions.Enable();
     }
