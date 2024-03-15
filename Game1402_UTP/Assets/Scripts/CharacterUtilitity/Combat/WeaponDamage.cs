@@ -32,7 +32,7 @@ public class WeaponDamage : MonoBehaviour
 
         if (other.TryGetComponent<Health>(out Health health))
         {
-            health.DealDamage(25);
+            health.TakeDamage(new AttackData().SwordDamage);
         }
     }
 }

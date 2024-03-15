@@ -7,7 +7,6 @@ public class Health : MonoBehaviour
 {
     #region Events
     public event Action OnDie;
-    public event Action OnHit;
     #endregion
     
     [SerializeField] 
@@ -41,6 +40,7 @@ public class Health : MonoBehaviour
         _currentHealth = Mathf.Max(_currentHealth + amount, _maxHealth);
     }
 
+    // This function is for debug purposes only.
     public void Death()
     {
         Destroy(this.gameObject, 0.25f);

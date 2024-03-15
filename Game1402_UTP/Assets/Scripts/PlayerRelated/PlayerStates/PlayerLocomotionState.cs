@@ -81,7 +81,7 @@ public class PlayerLocomotionState : PlayerBaseState
 
     void OnTarget()
     {
-        if (!_player.Targeter.SelectTarget())
+        if (!_player.Targeter.HasTarget())
         {
             return;
         }
