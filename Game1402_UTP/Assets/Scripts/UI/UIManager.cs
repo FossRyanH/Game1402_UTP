@@ -1,32 +1,33 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class UIManager: MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuUI;
 
+    public string startScene;
+    public string restartScene;
     public bool IsGamePaused = false;
 
-    PlayerActions _inputActions;
-
-
-    public void Update()
+    //start a new game
+    public void StartGame()
     {
-        //By pressing Escape it can pause and resume the game
-        if (Input.GetKeyDown(KeyCode.Escape)) //change to PlayerActions
-        {
-            if (!IsGamePaused)
-                Pause();
-            else
-                Resume();
-        }
+        SceneManager.LoadScene(startScene);
     }
 
     //set game time back to normal and load MainScene
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("LevelGym"); //check how to deal with more then one scene
+        SceneManager.LoadScene(restartScene);
+    }
+
+    public void HandlePauseResume()
+    {
+        if (!IsGamePaused)
+            Pause();
+        else
+            Resume();
     }
 
     //freeze game time, bring up pauseMenuUI, bring out statisticsUI change GameIsPaused to true
