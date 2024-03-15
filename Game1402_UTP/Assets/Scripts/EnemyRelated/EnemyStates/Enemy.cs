@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     #region Components
     public Health EnemyHealth;
     public EnemyStateMachine StateMachine;
+    public Target Target { get; private set; }
     #endregion
 
     private void Awake()

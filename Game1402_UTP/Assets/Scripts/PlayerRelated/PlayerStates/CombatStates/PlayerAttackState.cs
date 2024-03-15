@@ -20,6 +20,7 @@ public class PlayerAttackState : PlayerBaseState
         _attackTimer = 0f;
         _player.CanAttack = false;
         _player.Animator.CrossFadeInFixedTime(_attack.AttackName, _attack.AttackTransition);
+        _player.Weapon.SetAttack(_attack.SwordDamage, _attack.KnockbackDistance);
     }
 
     public override void UpdateState(float delta)

@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     [field: Header("Combat Related Variables")]
     [field: SerializeField]
     public AttackData Attack { get; private set; }
+    [field: SerializeField]
+    public WeaponDamage Weapon;
     public bool IsAttacking = false;
     public bool CanAttack = true;
     [SerializeField]

@@ -15,4 +15,6 @@ public class AttackData
 
     [field: SerializeField]
     public int SwordDamage { get; private set; } = 35;
+    [field: SerializeField]
+    public float KnockbackDistance { get; private set; }
 }

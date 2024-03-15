@@ -5,7 +5,7 @@ using Cinemachine;
 public class LockCameraY : CinemachineExtension
 {
     [SerializeField]
-    float m_YPosition = 13;
+    float _mYPosition = 13;
 
     protected override void PostPipelineStageCallback(
         CinemachineVirtualCameraBase vcam,
@@ -14,7 +14,7 @@ public class LockCameraY : CinemachineExtension
         if (stage == CinemachineCore.Stage.Body)
         {
             var position = state.RawPosition;
-            position.y = m_YPosition;
+            position.y = _mYPosition;
             state.RawPosition = position;
         }
     }

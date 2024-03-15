@@ -11,12 +11,7 @@ public class EnemyDeathState : EnemyBaseState
 
     public override void EnterState()
     {
-        Debug.Log("EnteredDeathState");
-        _enemy.EnemyHealth.OnDie += EnemyDie;
-    }
-
-    void EnemyDie()
-    {
+        GameObject.Destroy(_enemy.Target);
         _enemy.EnemyHealth.Death();
     }
 }

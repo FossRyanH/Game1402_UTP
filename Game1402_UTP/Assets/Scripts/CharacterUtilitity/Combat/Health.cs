@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 {
     #region Events
     public event Action OnDie;
+    public event Action OnTakeDamage;
     #endregion
     
     [SerializeField] 
@@ -21,7 +22,14 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (_currentHealth == 0)
+        {
+            return;
+        }
+        
         _currentHealth = Mathf.Max(_currentHealth - damage, 0);
+
+        OnTakeDamage?.Invoke();
 
         if (_currentHealth == 0)
         {
@@ -43,6 +51,6 @@ public class Health : MonoBehaviour
     // This function is for debug purposes only.
     public void Death()
     {
-        Destroy(this.gameObject, 0.25f);
+        Destroy(this.gameObject, 0.3f);
     }
 }
