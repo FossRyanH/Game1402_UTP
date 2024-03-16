@@ -1,19 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager: MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] GameObject pauseMenuUI;
-
-    public string startScene;
-    public string restartScene;
-    public bool IsGamePaused = false;
-
-    //start a new game
-    public void StartGame()
-    {
-        SceneManager.LoadScene(startScene);
-    }
+    [SerializeField] 
+    GameObject pauseMenuUI;
+    [SerializeField] 
+    string restartScene;
+    [SerializeField] 
+    bool IsGamePaused = false;
 
     //set game time back to normal and load MainScene
     public void Restart()
@@ -22,12 +17,10 @@ public class UIManager: MonoBehaviour
         SceneManager.LoadScene(restartScene);
     }
 
-    public void HandlePauseResume()
+    public void HandlePauseMenu()
     {
         if (!IsGamePaused)
             Pause();
-        else
-            Resume();
     }
 
     //freeze game time, bring up pauseMenuUI, bring out statisticsUI change GameIsPaused to true
@@ -66,7 +59,7 @@ public class UIManager: MonoBehaviour
         //resume time
         Time.timeScale = 1f;
 
-        //Application.Quit(); // Shut down the running application. The 'Application.Quit' call is ignored in the Editor.
-        SceneManager.LoadScene("MainMenu"); // Quit to Main Menu.
+        //Application.Quit(); //Shut down the running application. The 'Application.Quit' call is ignored in the Editor.
+        SceneManager.LoadScene("MainMenu"); //Quit to Main Menu.
     }
 }
