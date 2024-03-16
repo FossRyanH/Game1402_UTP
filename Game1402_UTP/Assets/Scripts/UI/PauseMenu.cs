@@ -3,14 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     GameObject pauseMenuUI;
-    [SerializeField] 
+    [SerializeField]
     string restartScene;
-    [SerializeField] 
+    [SerializeField]
     bool IsGamePaused = false;
 
-    //set game time back to normal and load MainScene
+    //set game time back to normal and load restartScene
     public void Restart()
     {
         Time.timeScale = 1f;
@@ -23,7 +23,7 @@ public class PauseMenu : MonoBehaviour
             Pause();
     }
 
-    //freeze game time, bring up pauseMenuUI, bring out statisticsUI change GameIsPaused to true
+    //freeze game time, bring up pauseMenuUI, change IsGamePaused to true
     public void Pause()
     {
         IsGamePaused = true;
@@ -38,7 +38,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
     }
 
-    //set game time back to normal, bring out pauseMenuUI, bring up statisticsUI, change GameIsPaused to false
+    //set game time back to normal, bring out pauseMenuUI, change IsGamePaused to false
     public void Resume()
     {
         IsGamePaused = false;
@@ -59,7 +59,7 @@ public class PauseMenu : MonoBehaviour
         //resume time
         Time.timeScale = 1f;
 
-        //Application.Quit(); //Shut down the running application. The 'Application.Quit' call is ignored in the Editor.
-        SceneManager.LoadScene("MainMenu"); //Quit to Main Menu.
+        //Application.Quit(); //Shut down the running application. The 'Application.Quit' call is ignored in the Editor
+        SceneManager.LoadScene("MainMenu"); //Quit to Main Menu. Debug/Develop mode
     }
 }
