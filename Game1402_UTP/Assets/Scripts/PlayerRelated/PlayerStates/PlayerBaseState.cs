@@ -11,7 +11,7 @@ public class PlayerBaseState : IState
     public virtual void EnterState(){}
 
     // updates everything happening inside the state so long as the state is active multiplied by delta to make it framerate independant.
-    public virtual void UpdateState(float delta) {}
+    public virtual void UpdateState() {}
 
     // Called once the state is being exited.
     public virtual void ExitState() {}

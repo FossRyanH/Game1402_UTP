@@ -7,7 +7,7 @@ public interface IState
     // Called once the character enters the state in question.
     public void EnterState();
     // Updates the State every frame based on delta
-    public void UpdateState(float delta);
+    public void UpdateState();
     // Called upon exiting the state in question.
     public void ExitState();
 }

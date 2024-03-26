@@ -31,11 +31,11 @@ public class PlayerDodgeState : PlayerBaseState
         _player.transform.position = newPos;
     }
 
-    public override void UpdateState(float delta)
+    public override void UpdateState()
     {
        if (_player.MovementVector == Vector2.zero)
         {
-            _player.StateMachine.TransitionTo(_player.StateMachine.IdleState);
+            _player.StateMachine.TransitionTo(_player.StateMachine.LocomotionState);
         }
     }
 

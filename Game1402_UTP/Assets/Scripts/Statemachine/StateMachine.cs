@@ -33,6 +33,6 @@ public class StateMachine
 
     public void Update()
     {
-        CurrentState?.UpdateState(Time.deltaTime);
+        CurrentState?.UpdateState();
     }
 }

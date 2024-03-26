@@ -1,4 +1,7 @@
-    /*  */using System.Collections;
+    /*  */
+
+    using System;
+    using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Unity.VisualScripting;
@@ -9,11 +12,12 @@ public class PlayerController : MonoBehaviour
     #region Components
     public CharacterController Controller;
     public ForceReciever Force;
-    [SerializeField]
+    public Targeter Targeter;
     public Animator Animator { get; private set; }
     public PlayerStateMachine StateMachine;
     [SerializeField]
     public Transform CameraFocusPoint;
+    public Health Health { get; private set; }
     #endregion
 
     #region PlayerMovement Variables
@@ -31,30 +35,57 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Misc Variables
-    public bool IsAttacking = false;
-    public bool CanAttack = true;
+    [SerializeField]
+    float _interactDistance = 1.5f;
+
+    public bool IsTargeting = false;
     public bool IsDodging = false;
     public bool CanDodge = true;
+    #endregion
+
+    #region Combat Variables
+    [field: Header("Combat Related Variables")]
+    [field: SerializeField]
+    public AttackData Attack { get; private set; }
+    [field: SerializeField]
+    public WeaponDamage Weapon;
+    public bool IsAttacking = false;
+    public bool CanAttack = true;
     [SerializeField]
     public float DodgeLength = 2f;
     [SerializeField]
     public float DodgeDuration = 1.25f;
-    [SerializeField]
-    float _interactDistance = 1.5f;
+    #endregion
+    
+    #region ConditionalEvents
+    public event Action CancelEvent;
+    public event Action TargetEvent;
     #endregion
 
     void Awake()
     {
         Controller = GetComponent<CharacterController>();
         Force = GetComponent<ForceReciever>();
+        Targeter = GetComponentInChildren<Targeter>();
+        Health = GetComponent<Health>();
 
         StateMachine = new PlayerStateMachine(this);
         Animator = GetComponent<Animator>();
     }
 
+    private void OnEnable()
+    {
+        Health.OnDie += HandleDeath;
+    }
+
+    private void OnDisable()
+    {
+        Health.OnDie -= HandleDeath;
+    }
+
     void Start()
     {
-        StateMachine.InitializeState(StateMachine.IdleState);
+        StateMachine.InitializeState(StateMachine.LocomotionState);
     }
 
     void Update()
@@ -66,8 +97,6 @@ public class PlayerController : MonoBehaviour
     public void HandleMovement(Vector2 input)
     {
         MovementVector = input;
-        StateMachine.TransitionTo(StateMachine.MoveState);
-
     }
 
     public void ProcessAttack(bool isAttacking)
@@ -77,6 +106,11 @@ public class PlayerController : MonoBehaviour
         {
             StateMachine.TransitionTo(StateMachine.AttackState);
         }
+    }
+
+    public void HandleTargeting()
+    {
+        TargetEvent?.Invoke();
     }
 
     // Handles the player interacting with doors, chests..etc
@@ -97,6 +131,16 @@ public class PlayerController : MonoBehaviour
         {
             other.GetComponent<Interactable>().Interact();
         }
+    }
+
+    public void OnCancel()
+    {
+        CancelEvent?.Invoke();
+    }
+
+    void HandleDeath()
+    {
+        StateMachine.TransitionTo(StateMachine.DeathState);
     }
 
     public void ProcessDodge(bool IsDodging)
