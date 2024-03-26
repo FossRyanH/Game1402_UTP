@@ -23,6 +23,7 @@ public class PlayerInputManager : MonoBehaviour
             _inputActions.PlayerAction.Interact.performed += i => _playerController.Interaction();
             _inputActions.PlayerAction.Dodge.performed += i => _playerController.ProcessDodge(true);
             _inputActions.PlayerAction.Pause.performed += i => _pauseMenu.HandlePauseMenu();
+            _inputActions.PlayerAction.Cancel.performed += i => _playerController.OnCancel();
             _inputActions.PlayerAction.Target.performed += i => _playerController.HandleTargeting();
         }
         _inputActions.Enable();
