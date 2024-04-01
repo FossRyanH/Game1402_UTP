@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     #region Misc Variables
     public bool IsAttacking = false;
     public bool CanAttack = true;
+    public bool IsDodging = false;
+    public bool CanDodge = true;
     [SerializeField]
     public float DodgeLength = 2f;
     [SerializeField]
@@ -94,6 +96,14 @@ public class PlayerController : MonoBehaviour
         if (other.GetComponent<Interactable>() != null)
         {
             other.GetComponent<Interactable>().Interact();
+        }
+    }
+
+    public void ProcessDodge(bool IsDodging)
+    {
+        if (IsDodging)
+        {
+            StateMachine.TransitionTo(StateMachine.DodgeState);
         }
     }
 }
