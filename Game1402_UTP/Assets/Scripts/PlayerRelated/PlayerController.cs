@@ -18,12 +18,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public Transform CameraFocusPoint;
     public Health Health { get; private set; }
+
+    public PlayerInputManager InputManager;
     #endregion
 
     #region PlayerMovement Variables
     [Header("Motion Related Variables")]
     [SerializeField]
     public Vector2 MovementVector = new Vector2();
+    [field: SerializeField]
+    public float MoveSpeed;
     [SerializeField]
     public float WalkSpeed = 0.5f;
     [SerializeField]
@@ -32,34 +36,27 @@ public class PlayerController : MonoBehaviour
     public float FallForce = 2.5f;
     [SerializeField]
     public float DodgeTimer = 0.5f;
+    [SerializeField]
+    public float DodgeSpeed = 2f;
     #endregion
 
     #region Misc Variables
     [SerializeField]
     float _interactDistance = 1.5f;
 
-    public bool IsTargeting = false;
-    public bool IsDodging = false;
-    public bool CanDodge = true;
     #endregion
 
     #region Combat Variables
     [field: Header("Combat Related Variables")]
     [field: SerializeField]
-    public AttackData Attack { get; private set; }
+    public AttackData[] Attack { get; private set; }
     [field: SerializeField]
     public WeaponDamage Weapon;
-    public bool IsAttacking = false;
-    public bool CanAttack = true;
+    public bool IsBlocking =  false;
     [SerializeField]
     public float DodgeLength = 2f;
     [SerializeField]
     public float DodgeDuration = 1.25f;
-    #endregion
-    
-    #region ConditionalEvents
-    public event Action CancelEvent;
-    public event Action TargetEvent;
     #endregion
 
     void Awake()
@@ -69,8 +66,9 @@ public class PlayerController : MonoBehaviour
         Targeter = GetComponentInChildren<Targeter>();
         Health = GetComponent<Health>();
 
-        StateMachine = new PlayerStateMachine(this);
+        StateMachine = new PlayerStateMachine();
         Animator = GetComponent<Animator>();
+        InputManager = GetComponent<PlayerInputManager>();
     }
 
     private void OnEnable()
@@ -85,32 +83,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        StateMachine.InitializeState(StateMachine.LocomotionState);
+        StateMachine.InitializeState(new PlayerLocomotionState(this));
     }
 
     void Update()
     {
         StateMachine.Update();
-    }
-
-    // Handle the vector input of the player, to move (or not) the player to teh MoveState.
-    public void HandleMovement(Vector2 input)
-    {
-        MovementVector = input;
-    }
-
-    public void ProcessAttack(bool isAttacking)
-    {
-        // Will only attack if the input for attack is trigger *and* the player has the ability to perform the attack.
-        if (isAttacking && CanAttack)
-        {
-            StateMachine.TransitionTo(StateMachine.AttackState);
-        }
-    }
-
-    public void HandleTargeting()
-    {
-        TargetEvent?.Invoke();
     }
 
     // Handles the player interacting with doors, chests..etc
@@ -133,21 +111,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnCancel()
+    public void HandleDeath()
     {
-        CancelEvent?.Invoke();
-    }
-
-    void HandleDeath()
-    {
-        StateMachine.TransitionTo(StateMachine.DeathState);
-    }
-
-    public void ProcessDodge(bool IsDodging)
-    {
-        if (IsDodging)
-        {
-            StateMachine.TransitionTo(StateMachine.DodgeState);
-        }
+        // 
     }
 }

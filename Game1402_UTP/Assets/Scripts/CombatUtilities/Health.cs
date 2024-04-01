@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
     
     [SerializeField] 
     private int _maxHealth = 100;
-
+    [SerializeField]
     private int _currentHealth;
 
     private void Awake()

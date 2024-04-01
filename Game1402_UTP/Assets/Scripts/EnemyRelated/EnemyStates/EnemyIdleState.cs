@@ -17,11 +17,11 @@ public class EnemyIdleState : EnemyBaseState
         _enemy.Animator.CrossFadeInFixedTime(_idleHash, _aniamtorDampTime);
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float delta)
     {
         if (IsInChaseRange())
         {
-            _enemy.StateMachine.TransitionTo(_enemy.StateMachine.EnemyChaseState);
+            _enemy.StateMachine.TransitionTo(new EnemyChaseState(_enemy));
         }
     }
 }

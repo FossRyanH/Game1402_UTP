@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,11 +15,18 @@ public class Enemy : MonoBehaviour
     public CharacterController Controller { get; private set; }
     [field: SerializeField]
     public ForceReciever ForceReciever { get; private set; }
+    [field:SerializeField]
+    public NavMeshAgent Agent { get; private set; }
     #endregion
 
     #region Combat Related
     [field: SerializeField]
     public float PlayerChaseRange { get; private set; } = 7.5f;
+    #endregion
+
+    #region Movement Variables
+    [field: SerializeField]
+    public float MoveSpeed = 0.5f;
     #endregion
 
     // Find Reference to Player

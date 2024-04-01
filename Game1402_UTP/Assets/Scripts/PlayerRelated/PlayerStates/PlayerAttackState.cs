@@ -4,39 +4,70 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerBaseState
 {
-    private float _attackCooldown = 0.65f;
-    private float _attackTimer;
-    private readonly int _attackAnimHash = Animator.StringToHash("Attack");
-    private float _crossFadeDuration = 0.1f;
+    private float _previousFrameTime;
+    private bool _alreadyAppliedForce;
+
+    private AttackData _attack;
+    private string _attackTagString = "Attack";
     
-    public PlayerAttackState(PlayerController player)
+    public PlayerAttackState(PlayerController player, int attackIndex)
     {
         this._player = player;
+        _attack = _player.Attack[attackIndex];
     }
 
     public override void EnterState()
     {
-        _player.Animator.CrossFadeInFixedTime(_attackAnimHash, _crossFadeDuration);
-        _player.IsAttacking = true;
-        _attackTimer = 0f;
-        _player.CanAttack = false;
+        _player.Weapon.SetAttack(_attack.Damage, _attack.KnockbackDistance);
+        _player.Animator.CrossFadeInFixedTime(_attack.AttackName, _attack.AttackTransition);
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float delta)
     {
-        _attackTimer += Time.deltaTime;
-        // Once the attack timer reaches the cooldown, sets the players ability to initiate an attack to true
-        // Then transitions back to idle.
-        if (_attackTimer >= _attackCooldown)
+        float normalizedTime = GetNormalizedTime(_player.Animator, _attackTagString);
+
+        if (normalizedTime >= _previousFrameTime && normalizedTime < 1f)
         {
-            _player.CanAttack = true;
-            _player.StateMachine.TransitionTo(_player.StateMachine.LocomotionState);
+            if (normalizedTime >= _attack.ForceTime)
+            {
+                TryApplyForce();
+            }
+
+            if (_player.InputManager.IsAttacking)
+            {
+                TryComboAttack(normalizedTime);
+            }
         }
+        else
+        {
+            ReturnToLocomotion();
+        }
+        _previousFrameTime = normalizedTime;
     }
 
-    // Sets the IsAttacking to false after the attack is complete
     public override void ExitState()
     {
-        _player.CanAttack = true;
+        _player.InputManager.IsAttacking = false;
     }
+
+    void TryComboAttack(float normalizedTime)
+    {
+        if (_attack.ComboStateIndex == -1) { return; }
+
+        if (_attack.ComboStateIndex % _player.Attack.Length == 0) { return; }
+        
+        if (normalizedTime < _attack.ComboAttackTime) { return; }
+
+        _player.StateMachine.TransitionTo(new PlayerAttackState(_player, _attack.ComboStateIndex));
+    }
+
+    void TryApplyForce()
+    {
+        if (_alreadyAppliedForce) { return; }
+
+        _player.Force.AddForce(_player.transform.forward * _attack.Force);
+
+        _alreadyAppliedForce = true;
+    }
+
 }

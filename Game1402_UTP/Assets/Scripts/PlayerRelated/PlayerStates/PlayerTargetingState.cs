@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerTargetingState : PlayerBaseState
 {
-    private float _currentSpeed;
     private readonly int _combatMovementHash = Animator.StringToHash("CombatMovement");
     private readonly int _yMovement = Animator.StringToHash("YMovement");
     private readonly int _xMovement = Animator.StringToHash("XMovement");
@@ -18,33 +17,45 @@ public class PlayerTargetingState : PlayerBaseState
 
     public override void EnterState()
     {
-        _player.CancelEvent += OnCancel;
+        _player.InputManager.CancelEvent += OnCancel;
+        _player.InputManager.DodgeEvent += HandleDodge;
         _player.Animator.CrossFadeInFixedTime(_combatMovementHash, _animatorDampTime);
-        _currentSpeed = _player.WalkSpeed;
     }
 
-    public override void UpdateState()
+    public override void UpdateState(float delta)
     {
         if (_player.Targeter.CurrentTarget == null)
         {
-            _player.StateMachine.TransitionTo(_player.StateMachine.LocomotionState);
+            _player.StateMachine.TransitionTo(new PlayerLocomotionState(_player));
+            return;
+        }
+
+        if (_player.InputManager.IsAttacking)
+        {
+            _player.StateMachine.TransitionTo(new PlayerAttackState(_player, 0));
+            return;
+        }
+        if (_player.IsBlocking)
+        {
+            _player.StateMachine.TransitionTo(new PlayerBlockState(_player));
+            return;
+        }
+        if (_player.Targeter.CurrentTarget == null)
+        {
+            _player.StateMachine.TransitionTo(new PlayerLocomotionState(_player));
             return;
         }
 
         Vector3 motion = HandleMovement();
-        Move(motion);
+        Move(motion, delta);
         FaceTarget();
         UpdateAnimator();
     }
 
     public override void ExitState()
     {
-        _player.CancelEvent -= OnCancel;
-    }
-
-    void Move(Vector3 inputVector)
-    {
-        _player.Controller.Move((inputVector + _player.Force.Movement) * (_currentSpeed * Time.fixedDeltaTime));
+        _player.InputManager.CancelEvent -= OnCancel;
+        _player.InputManager.DodgeEvent -= HandleDodge;
     }
 
     Vector3 HandleMovement()
@@ -69,40 +80,52 @@ public class PlayerTargetingState : PlayerBaseState
     {
         if (_player.MovementVector == Vector2.zero)
         {
-            _currentSpeed = 0f;
-            _player.Animator.SetFloat(_yMovement, 0f, _animatorDampTime, Time.fixedDeltaTime);
-            _player.Animator.SetFloat(_xMovement, 0f, _animatorDampTime, Time.fixedDeltaTime);
+            _player.MoveSpeed = 0f;
+            _player.Animator.SetFloat(_yMovement, _player.MovementVector.y, _animatorDampTime, Time.fixedDeltaTime);
+            _player.Animator.SetFloat(_xMovement, _player.MovementVector.x, _animatorDampTime, Time.fixedDeltaTime);
         }
         else if (_player.MovementVector.y <= 1f)
         {
-            _currentSpeed = _player.RunSpeed;
-            _player.Animator.SetFloat(_yMovement, 0.5f, _animatorDampTime, Time.fixedDeltaTime);
+            _player.MoveSpeed = _player.WalkSpeed;
+            _player.Animator.SetFloat(_yMovement, _player.MovementVector.y, _animatorDampTime, Time.fixedDeltaTime);
         }
         else if (_player.MovementVector.y <= 0.5f)
         {
-            _currentSpeed = _player.WalkSpeed;
-            _player.Animator.SetFloat(_yMovement, 0.5f, _animatorDampTime, Time.fixedDeltaTime);
+            _player.MoveSpeed = _player.WalkSpeed;
+            _player.Animator.SetFloat(_yMovement, _player.MovementVector.y, _animatorDampTime, Time.fixedDeltaTime);
         }
         else if (_player.MovementVector.y < 0f)
         {
-            _currentSpeed = _player.WalkSpeed;
-            _player.Animator.SetFloat(_yMovement, -1f, _animatorDampTime, Time.fixedDeltaTime);
+            _player.MoveSpeed = _player.WalkSpeed;
+            _player.Animator.SetFloat(_yMovement, _player.MovementVector.y, _animatorDampTime, Time.fixedDeltaTime);
         }
         else if (_player.MovementVector.x <= 1f)
         {
-            _currentSpeed = _player.RunSpeed;
-            _player.Animator.SetFloat(_xMovement, 1f, _animatorDampTime, Time.fixedDeltaTime);
+            _player.MoveSpeed = _player.WalkSpeed;
+            _player.Animator.SetFloat(_xMovement, _player.MovementVector.x, _animatorDampTime, Time.fixedDeltaTime);
         }
         else if (_player.MovementVector.x < 0f)
         {
-            _currentSpeed = _player.RunSpeed;
-            _player.Animator.SetFloat(_xMovement, -1f, _animatorDampTime, Time.fixedDeltaTime);
+            _player.MoveSpeed = _player.WalkSpeed;
+            _player.Animator.SetFloat(_xMovement, _player.MovementVector.x, _animatorDampTime, Time.fixedDeltaTime);
         }
     }
 
     void OnCancel()
     {
         _player.Targeter.CancelTarget();
-        _player.StateMachine.TransitionTo(_player.StateMachine.LocomotionState);
+        _player.StateMachine.TransitionTo(new PlayerLocomotionState(_player));
+    }
+
+    void HandleDodge()
+    {
+        if (_player.MovementVector == Vector2.zero) { return; }
+        _player.StateMachine.TransitionTo(new PlayerDodgeState(_player, _player.MovementVector));
+    }
+
+    void HandleTarget()
+    {
+        if (!_player.Targeter.HasTarget()) { return; }
+        _player.StateMachine.TransitionTo(new PlayerTargetingState(_player));
     }
 }

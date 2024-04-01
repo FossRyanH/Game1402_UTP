@@ -10,7 +10,7 @@ public class EnemyBaseState : IState
     {
     }
     
-    public virtual void UpdateState()
+    public virtual void UpdateState(float delta)
     {
     }
 
