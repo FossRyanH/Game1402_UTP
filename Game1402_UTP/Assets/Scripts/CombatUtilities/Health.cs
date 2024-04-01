@@ -15,6 +15,8 @@ public class Health : MonoBehaviour
     [SerializeField]
     private int _currentHealth;
 
+    public bool IsDead => _currentHealth == 0;
+
     private void Awake()
     {
         _currentHealth = _maxHealth;

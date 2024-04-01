@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 
 public class EnemyChaseState : EnemyBaseState
 {
@@ -22,22 +23,23 @@ public class EnemyChaseState : EnemyBaseState
     {
         if (!IsInChaseRange())
         {
-            _enemy.StateMachine.TransitionTo(_enemy.StateMachine.EnemyIdleState);
+            _enemy.StateMachine.TransitionTo(new EnemyIdleState(_enemy));
             return;
+        }
+        else if (IsInAttackRange())
+        {
+            _enemy.StateMachine.TransitionTo(new EnemyAttackState(_enemy));
         }
 
         MoveToPlayer(delta);
+
+        FacePlayer();
     }
 
     public override void ExitState()
     {
         _enemy.Agent.ResetPath();
         _enemy.Agent.velocity = Vector3.zero;
-    }
-
-    void Move(Vector3 motion, float delta)
-    {
-        _enemy.Controller.Move((motion + _enemy.ForceReciever.Movement) * delta);
     }
 
     void MoveToPlayer(float delta)
@@ -49,5 +51,14 @@ public class EnemyChaseState : EnemyBaseState
         }
 
         _enemy.Agent.velocity = _enemy.Controller.velocity;
+    }
+
+    bool IsInAttackRange()
+    {
+        if (_enemy.Player.IsDead) { return false; }
+
+        float playerDistanceSqr = (_enemy.Player.transform.position - _enemy.transform.position).sqrMagnitude;
+
+        return playerDistanceSqr <= Mathf.Pow(_enemy.AttackRange, 2);
     }
 }

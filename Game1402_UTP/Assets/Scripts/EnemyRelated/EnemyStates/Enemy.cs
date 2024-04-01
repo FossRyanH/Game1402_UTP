@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     #region Combat Related
     [field: SerializeField]
     public float PlayerChaseRange { get; private set; } = 7.5f;
+    [field: SerializeField]
+    public float AttackRange { get; private set; } = 1.15f;
     #endregion
 
     #region Movement Variables
@@ -31,15 +33,16 @@ public class Enemy : MonoBehaviour
 
     // Find Reference to Player
     [field: SerializeField]
-    public PlayerController Player { get; private set; }
+    public Health Player { get; private set; }
 
     private void Awake()
     {
         EnemyHealth = GetComponent<Health>();
         Controller = GetComponent<CharacterController>();
         ForceReciever = GetComponent<ForceReciever>();
+        Animator = GetComponent<Animator>();
 
-        StateMachine = new EnemyStateMachine(this);
+        StateMachine = new EnemyStateMachine();
     }
 
     private void OnEnable()
@@ -54,14 +57,14 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Player = FindFirstObjectByType<PlayerController>();
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
 
-        StateMachine.InitializeState(StateMachine.EnemyIdleState);
+        StateMachine.InitializeState(new EnemyIdleState(this));
     }
 
     void HandleDeath()
     {
-        StateMachine.TransitionTo(StateMachine.EnemyDeathState);
+        StateMachine.TransitionTo(new EnemyDeathState(this));
     }
 
     void OnDrawGizmos()

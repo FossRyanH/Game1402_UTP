@@ -7,6 +7,8 @@ public class PlayerAttackState : PlayerBaseState
     private float _previousFrameTime;
     private bool _alreadyAppliedForce;
 
+    private float _normalizedTimer = 1.1f;
+
     private AttackData _attack;
     private string _attackTagString = "Attack";
     
@@ -26,7 +28,7 @@ public class PlayerAttackState : PlayerBaseState
     {
         float normalizedTime = GetNormalizedTime(_player.Animator, _attackTagString);
 
-        if (normalizedTime >= _previousFrameTime && normalizedTime < 1f)
+        if (normalizedTime >= _previousFrameTime && normalizedTime < _normalizedTimer)
         {
             if (normalizedTime >= _attack.ForceTime)
             {
