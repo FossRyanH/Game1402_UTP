@@ -113,6 +113,6 @@ public class PlayerController : MonoBehaviour
 
     public void HandleDeath()
     {
-        // 
+        StateMachine.TransitionTo(new PlayerDeathState(this));
     }
 }

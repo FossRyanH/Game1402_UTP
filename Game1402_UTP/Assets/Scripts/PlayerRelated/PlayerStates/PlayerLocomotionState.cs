@@ -31,7 +31,7 @@ public class PlayerLocomotionState : PlayerBaseState
         }
 
         Vector3 movement = HandleMovement();
-        Move(movement, delta);
+        Move(movement * _player.MoveSpeed, delta);
         FaceDirection(movement);
         UpdateAnimations();
     }

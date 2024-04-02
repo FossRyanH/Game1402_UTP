@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyDeathState : EnemyBaseState
@@ -11,7 +12,7 @@ public class EnemyDeathState : EnemyBaseState
 
     public override void EnterState()
     {
-        GameObject.Destroy(_enemy.Target);
+        _enemy.Weapon.gameObject.SetActive(false);
         _enemy.EnemyHealth.Death();
     }
 }

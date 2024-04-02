@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,13 +18,19 @@ public class Enemy : MonoBehaviour
     public ForceReciever ForceReciever { get; private set; }
     [field:SerializeField]
     public NavMeshAgent Agent { get; private set; }
+    [field:SerializeField]
+    public WeaponDamage Weapon { get; private set; }
+    [field: SerializeField]
+    public AttackData Attack { get; private set; }
+    [field: SerializeField]
+    public WeaponHandler WeaponHandler { get; private set; }
     #endregion
 
     #region Combat Related
     [field: SerializeField]
     public float PlayerChaseRange { get; private set; } = 7.5f;
     [field: SerializeField]
-    public float AttackRange { get; private set; } = 1.15f;
+    public float AttackRange { get; private set; } = 2f;
     #endregion
 
     #region Movement Variables
@@ -37,12 +44,21 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+
         EnemyHealth = GetComponent<Health>();
         Controller = GetComponent<CharacterController>();
         ForceReciever = GetComponent<ForceReciever>();
         Animator = GetComponent<Animator>();
+        Agent = GetComponent<NavMeshAgent>();
+        WeaponHandler = GetComponent<WeaponHandler>();
 
         StateMachine = new EnemyStateMachine();
+    }
+
+    void Update()
+    {
+        StateMachine.Update();
     }
 
     private void OnEnable()
@@ -57,9 +73,10 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
-
         StateMachine.InitializeState(new EnemyIdleState(this));
+
+        Agent.updatePosition = false;
+        Agent.updateRotation = false;
     }
 
     void HandleDeath()

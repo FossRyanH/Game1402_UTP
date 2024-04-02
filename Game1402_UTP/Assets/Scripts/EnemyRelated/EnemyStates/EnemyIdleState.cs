@@ -23,5 +23,7 @@ public class EnemyIdleState : EnemyBaseState
         {
             _enemy.StateMachine.TransitionTo(new EnemyChaseState(_enemy));
         }
+
+        Move(delta);
     }
 }

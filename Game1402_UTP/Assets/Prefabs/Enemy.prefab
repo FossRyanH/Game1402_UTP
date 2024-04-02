@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4389746563509297593}
   - component: {fileID: 2500136669030643524}
   - component: {fileID: -373360751579741315}
+  - component: {fileID: 7435655497479313818}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -64,6 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
+  _currentHealth: 0
 --- !u!114 &5259772608780609257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +94,20 @@ MonoBehaviour:
   EnemyHealth: {fileID: 4348553135391738741}
   <Controller>k__BackingField: {fileID: 0}
   <ForceReciever>k__BackingField: {fileID: 0}
+  <Agent>k__BackingField: {fileID: 0}
+  <Weapon>k__BackingField: {fileID: 0}
+  <Attack>k__BackingField:
+    <AttackName>k__BackingField: 
+    <AttackTransition>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: -1
+    <ComboAttackTime>k__BackingField: 0
+    <ForceTime>k__BackingField: 0
+    <Force>k__BackingField: 0
+    <Damage>k__BackingField: 35
+    <KnockbackDistance>k__BackingField: 0
   <PlayerChaseRange>k__BackingField: 7.5
+  <AttackRange>k__BackingField: 2
+  MoveSpeed: 0.5
   <Player>k__BackingField: {fileID: 0}
 --- !u!143 &-8565891101534070827
 CharacterController:
@@ -184,3 +199,16 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7435655497479313818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3488724215827341185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638bd127a1df1a4428f2a250e99b02bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackBox: {fileID: 0}

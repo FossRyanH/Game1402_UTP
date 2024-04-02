@@ -47,7 +47,7 @@ public class EnemyChaseState : EnemyBaseState
         if (_enemy.Agent.isOnNavMesh)
         {
             _enemy.Agent.destination = _enemy.Player.transform.position;
-            Move(_enemy.Agent.desiredVelocity.normalized, delta);
+            Move(_enemy.Agent.desiredVelocity.normalized * _enemy.MoveSpeed, delta);
         }
 
         _enemy.Agent.velocity = _enemy.Controller.velocity;
@@ -59,6 +59,6 @@ public class EnemyChaseState : EnemyBaseState
 
         float playerDistanceSqr = (_enemy.Player.transform.position - _enemy.transform.position).sqrMagnitude;
 
-        return playerDistanceSqr <= Mathf.Pow(_enemy.AttackRange, 2);
+        return playerDistanceSqr <= _enemy.AttackRange * _enemy.AttackRange;
     }
 }

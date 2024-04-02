@@ -23,7 +23,7 @@ public class PlayerBaseState : IState
 
     protected void Move(Vector3 inputVector, float delta)
     {
-        _player.Controller.Move((inputVector + _player.Force.Movement) * delta * _player.MoveSpeed);
+        _player.Controller.Move((inputVector + _player.Force.Movement) * delta);
     }
 
     protected float GetNormalizedTime(Animator animator, string tag)

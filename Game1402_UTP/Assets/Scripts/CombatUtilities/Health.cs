@@ -24,10 +24,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (_currentHealth == 0)
-        {
-            return;
-        }
+        if (_currentHealth == 0) { return; }
         
         _currentHealth = Mathf.Max(_currentHealth - damage, 0);
 
