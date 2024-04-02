@@ -16,4 +16,45 @@ public class PlayerBaseState : IState
     // Called once the state is being exited.
     public virtual void ExitState() {}
 
+    protected void Move(float delta)
+    {
+        Move(Vector3.zero, delta);
+    }
+
+    protected void Move(Vector3 inputVector, float delta)
+    {
+        _player.Controller.Move((inputVector + _player.Force.Movement) * delta);
+    }
+
+    protected float GetNormalizedTime(Animator animator, string tag)
+    {
+        AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo nextInfo = animator.GetNextAnimatorStateInfo(0);
+
+        if (animator.IsInTransition(0) && nextInfo.IsTag(tag))
+        {
+            return nextInfo.normalizedTime;
+        }
+        else if (!animator.IsInTransition(0) && currentInfo.IsTag(tag))
+        {
+            return currentInfo.normalizedTime;
+        }
+        else
+        {
+            return 0f;
+        }
+    }
+
+    protected void ReturnToLocomotion()
+    {
+        if (_player.Targeter.CurrentTarget != null)
+        {
+            _player.StateMachine.TransitionTo(new PlayerTargetingState(_player));
+        }
+        else
+        {
+            _player.StateMachine.TransitionTo(new PlayerLocomotionState(_player));
+        }
+    }
+
 }

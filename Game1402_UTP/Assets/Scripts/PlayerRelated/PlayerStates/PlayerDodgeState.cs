@@ -4,45 +4,39 @@ using UnityEngine;
 
 public class PlayerDodgeState : PlayerBaseState
 {
-    private readonly int _dodgeAnimHash = Animator.StringToHash("Dodge_Backward");
+    private readonly int _dodgeAnimHash = Animator.StringToHash("Dodge");
     private float _crossFadeDuration = 0.1f;
-    public float DodgeDuration = 0.2f;
 
-    public PlayerDodgeState(PlayerController player)
+    private float _remainingDodgeTime;
+    private Vector3 _dodgingDirectionInput;
+
+    public PlayerDodgeState(PlayerController player, Vector3 dodgeDirInput)
     {
         this._player = player;
+        this._dodgingDirectionInput = dodgeDirInput;
     }
 
     public override void EnterState()
     {
+        _remainingDodgeTime = _player.DodgeDuration;
+        _player.MoveSpeed = _player.DodgeSpeed;
+
         _player.Animator.CrossFadeInFixedTime(_dodgeAnimHash, _crossFadeDuration);
-        _player.IsDodging = true;
-        _player.CanDodge = false;
-        Dodge();
-    }
-
-    void Dodge()
-    {
-        Vector3 newPos = (_player.transform.position + Vector3.back * 1f);
-
-        while (Mathf.Abs((newPos - _player.transform.position).sqrMagnitude) > _player.DodgeLength)
-            _player.transform.position = Vector3.Lerp(_player.transform.position, newPos, DodgeDuration * Time.fixedDeltaTime);
-
-        _player.transform.position = newPos;
     }
 
     public override void UpdateState(float delta)
     {
-       if (_player.MovementVector == Vector2.zero)
-        {
-            _player.StateMachine.TransitionTo(_player.StateMachine.IdleState);
-        }
-    }
+        Vector3 movement = new Vector3();
+        movement += _player.transform.right * _dodgingDirectionInput.x * _player.DodgeLength / _player.DodgeDuration;
+        movement += _player.transform.forward * _dodgingDirectionInput.y * _player.DodgeLength / _player.DodgeDuration;
 
-    public override void ExitState()
-    {
-        //if (_player.IsDodging == false)
-        _player.IsDodging = false;
-        _player.CanDodge = true;
+        Move(movement, delta);
+
+        _remainingDodgeTime -= Time.deltaTime;
+
+        if (_remainingDodgeTime <= 0f)
+        {
+            _player.StateMachine.TransitionTo(new PlayerTargetingState(_player));
+        }
     }
 }
