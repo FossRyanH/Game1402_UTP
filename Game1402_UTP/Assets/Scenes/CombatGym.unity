@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465791, g: 0.4964133, b: 0.57481784, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -428,6 +428,16 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!195 &903244940 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 5590119718778616212, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
+  m_PrefabInstance: {fileID: 1851633569337611398}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &903244943 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 4492975555478629692, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
+  m_PrefabInstance: {fileID: 1851633569337611398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &924909229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,7 +1178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4646956051048713593, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -1.3397455
       objectReference: {fileID: 0}
     - target: {fileID: 4646956051048713593, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1176,7 +1186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7301009507218032209, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -1.3397455
       objectReference: {fileID: 0}
     - target: {fileID: 7301009507218032209, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13609,6 +13619,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
+      propertyPath: <Agent>k__BackingField
+      value: 
+      objectReference: {fileID: 903244940}
+    - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
+      propertyPath: <Controller>k__BackingField
+      value: 
+      objectReference: {fileID: 903244943}
     - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
       propertyPath: <PlayerChaseRange>k__BackingField
       value: 3
