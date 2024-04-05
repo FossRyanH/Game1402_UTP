@@ -5,16 +5,24 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour
 {
     public Item item;
+    public InventoryManager inventoryManager;
+
+    public void Start()
+    {
+        inventoryManager = FindObjectOfType<InventoryManager>();
+    }
 
     void Pickup()
     {
-        InventoryManager.Instance.Add(item);
-        Destroy(gameObject);
+        inventoryManager.Add(item);
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other == GameObject.FindWithTag("Player"))
+        if (other.gameObject.tag == "Player")
+        {
             Pickup();
+            Destroy(this.gameObject);
+        }
     }
 
 }
