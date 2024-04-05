@@ -24209,7 +24209,7 @@ GameObject:
   - component: {fileID: 909015722718264077}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24928,6 +24928,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055164577182759051, guid: 472b727c2c00391429114c245a55c57d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25456,6 +25460,10 @@ PrefabInstance:
     - target: {fileID: 5317646577798970159, guid: 4daa2fdb1e574c74eaf239da6dcf8fff, type: 3}
       propertyPath: m_Name
       value: ManaPotion
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242921505914774722, guid: 4daa2fdb1e574c74eaf239da6dcf8fff, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27473,6 +27481,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1105509736}
     m_Modifications:
+    - target: {fileID: 1815064438303238621, guid: d13d199ac328fdf4bba1a1f612ff1008, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8131060469958764650, guid: d13d199ac328fdf4bba1a1f612ff1008, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.41488314
