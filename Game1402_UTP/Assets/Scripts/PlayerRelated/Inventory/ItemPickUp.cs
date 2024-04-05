@@ -11,9 +11,10 @@ public class ItemPickUp : MonoBehaviour
         InventoryManager.Instance.Add(item);
         Destroy(gameObject);
     }
-    void OnCollisionEnter (Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Pickup();
+        if (other == GameObject.FindWithTag("Player"))
+            Pickup();
     }
 
 }
