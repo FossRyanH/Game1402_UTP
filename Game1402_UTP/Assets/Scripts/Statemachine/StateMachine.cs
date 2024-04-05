@@ -29,6 +29,9 @@ public class StateMachine
 
     public void Update()
     {
-        CurrentState?.UpdateState(Time.fixedDeltaTime);
+        if (CurrentState != null)
+        {
+            CurrentState.UpdateState(Time.deltaTime);
+        }
     }
 }

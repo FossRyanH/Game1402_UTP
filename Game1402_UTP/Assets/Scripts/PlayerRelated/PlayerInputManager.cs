@@ -84,4 +84,10 @@ public class PlayerInputManager : MonoBehaviour, PlayerActions.IPlayerActionActi
 
         TargetAction?.Invoke();
     }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        // TODO: Add Inventory functionality
+        if (!context.performed) { return; }
+    }
 }
