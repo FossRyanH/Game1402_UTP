@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - LockedDoor
+  - Obstacle
   layers:
   - Default
   - TransparentFX
