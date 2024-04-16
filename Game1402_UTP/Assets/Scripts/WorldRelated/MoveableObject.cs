@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveableObject : MonoBehaviour
@@ -10,38 +8,21 @@ public class MoveableObject : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Rigidbody body = hit.collider.attachedRigidbody;
+        Rigidbody _rb = hit.collider.attachedRigidbody;
 
-        #region approach 1
-        // no rigidbody  
-        if (body == null || body.isKinematic)
+        //if no rigidbody, return
+        if (_rb == null || _rb.isKinematic)
             return;
 
-        // We dont want to push objects below us
+        //if push objects below -0.3f, return
         if (hit.moveDirection.y < -0.3f)
             return;
 
-        // Calculate push direction from move direction,
-        // we only push objects to the sides never up and down
+        //calculate push direction from move direction,
+        //we only push objects to the x and z axis never y axis
         Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
 
-        // Apply the push
-        body.velocity = pushDir * pushForce;
-        #endregion
-
-
-        #region approach 2
-        /*
-        if (body != null)
-        {
-            // move to one direction
-            Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
-            forceDirection.y = 0; //do not move on y axis
-            forceDirection.Normalize();
-
-            body.AddForceAtPosition(forceDirection * pushForce, transform.position, ForceMode.Impulse);
-        }
-        */
-        #endregion
+        //apply the push
+        _rb.velocity = pushDir * pushForce;
     }
 }

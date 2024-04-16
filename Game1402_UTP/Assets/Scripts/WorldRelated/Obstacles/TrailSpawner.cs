@@ -9,7 +9,7 @@ public class TrailSpawner : MonoBehaviour
     [SerializeField]
     ObstacleBall obstacleBall;
     [SerializeField]
-    float spawnTime = 1;
+    float spawnTime = 5;
 
     private void Start()
     {

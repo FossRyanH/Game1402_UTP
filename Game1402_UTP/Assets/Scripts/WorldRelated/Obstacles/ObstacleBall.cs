@@ -28,7 +28,7 @@ public class ObstacleBall : MonoBehaviour
     {
         while (true)
         {
-            _rb?.MovePosition(_rb.position + Vector3.right * speed * Time.fixedDeltaTime);
+            _rb?.MovePosition(_rb.position + -Vector3.forward * speed * Time.fixedDeltaTime);
             yield return new WaitForFixedUpdate();
         }
     }
