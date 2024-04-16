@@ -4279,8 +4279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Items: []
-  ItemContent: {fileID: 1852041340}
-  InventoryItem: {fileID: 2200284886433064741, guid: d5f129fd2dcec76448e21a7802b9ad53, type: 3}
+  ItemContent: {fileID: 1664137038}
+  InventoryItem: {fileID: 1664137038}
   EnableRemove: {fileID: 1138471955}
   InventoryItems: []
 --- !u!4 &832292518
@@ -9992,7 +9992,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -1104356567022715952, guid: d5f129fd2dcec76448e21a7802b9ad53, type: 3}
   m_PrefabInstance: {fileID: 1193081660}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1664137038}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10120a80d6e4dac47a48915738f439f8, type: 3}
@@ -18967,6 +18967,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1664137038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2200284886433064741, guid: d5f129fd2dcec76448e21a7802b9ad53, type: 3}
+  m_PrefabInstance: {fileID: 1193081660}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1698494251
 Mesh:
   m_ObjectHideFlags: 0
@@ -23706,6 +23711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 8db540b939befad42987f86af04c6c6d, type: 2}
+  inventoryManager: {fileID: 0}
 --- !u!114 &1899978304172497855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23809,6 +23815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 705ba3cdc3d037e41be85bbd5b2bf7a6, type: 2}
+  inventoryManager: {fileID: 0}
 --- !u!114 &2703990266219222284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23912,6 +23919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: dc37bf5594003f6439881e472178f01f, type: 2}
+  inventoryManager: {fileID: 0}
 --- !u!114 &6706455289779072668
 MonoBehaviour:
   m_ObjectHideFlags: 0

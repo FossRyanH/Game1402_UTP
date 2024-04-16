@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
     public List<Item> Items = new List<Item>();
 
-    public Transform ItemContent;
+    public GameObject ItemContent;
     public GameObject InventoryItem;
 
     public Toggle EnableRemove;
@@ -31,45 +32,52 @@ public class InventoryManager : MonoBehaviour
     {
 
         // Cleans the content before opening it 
-        foreach (Transform item in ItemContent) 
-        { 
-            Destroy(item.gameObject);
-        }
 
+        GameObject lastObject = null;
         foreach (var  item in Items) 
         {
-            GameObject obj = Instantiate(InventoryItem, ItemContent);
-            var itemName = obj.transform.Find("ItemName").GetComponent<Text>();
-            var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-            var removeButton = obj.transform.Find("RemoveButton").gameObject.GetComponent<Button>();
+            GameObject obj = Instantiate(ItemContent, ItemContent.transform.parent);
+            var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
+            var itemIcon = obj.transform.Find("ItemImage").GetComponent<Image>();
+           // var removeButton = obj.transform.Find("RemoveButton").gameObject.GetComponent<Button>();
 
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
 
             if (EnableRemove.isOn)
             {
-                removeButton.gameObject.SetActive(true);
+                //removeButton.gameObject.SetActive(true);
             }
+            lastObject = obj;
+
         }
+        if(Items.Count > 0)
+        {
+            Destroy(ItemContent);
+            ItemContent = lastObject;
+        }
+     
 
         SetInventoryItems();
+        //Destroy(ItemContent);
+
     }
 
     public void EnableItemsRemove() 
     { 
         if (EnableRemove.isOn) 
         { 
-            foreach (Transform item in ItemContent)
-            {
-                item.Find("RemoveButton").gameObject.SetActive(true);
-            }
+            //foreach (Transform item in ItemContent)
+            //{
+            //    item.Find("RemoveButton").gameObject.SetActive(true);
+            //}
         }
         else
         {
-            foreach (Transform item in ItemContent)
-            {
-                item.Find("RemoveButton").gameObject.SetActive(false);
-            }
+            //foreach (Transform item in ItemContent)
+            //{
+            //    item.Find("RemoveButton").gameObject.SetActive(false);
+            //}
         }
     }
 
