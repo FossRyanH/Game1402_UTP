@@ -20,6 +20,7 @@ public class PlayerTargetingState : PlayerBaseState
         _player.InputManager.CancelEvent += OnCancel;
         _player.InputManager.DodgeEvent += HandleDodge;
         _player.Animator.CrossFadeInFixedTime(_combatMovementHash, _animatorDampTime);
+        _player.MoveSpeed = _player.WalkSpeed;
     }
 
     public override void UpdateState(float delta)
@@ -47,7 +48,7 @@ public class PlayerTargetingState : PlayerBaseState
         }
 
         Vector3 motion = HandleMovement();
-        Move(motion, delta);
+        Move(motion * _player.MoveSpeed, delta);
         FaceTarget();
         UpdateAnimator();
     }
@@ -119,8 +120,9 @@ public class PlayerTargetingState : PlayerBaseState
 
     void HandleDodge()
     {
+        Vector3 motion = HandleMovement();
         if (_player.MovementVector == Vector2.zero) { return; }
-        _player.StateMachine.TransitionTo(new PlayerDodgeState(_player, _player.MovementVector));
+        _player.StateMachine.TransitionTo(new PlayerDodgeState(_player, motion));
     }
 
     void HandleTarget()

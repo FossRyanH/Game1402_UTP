@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465791, g: 0.4964133, b: 0.57481784, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1355,6 +1355,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 1544025223562595941, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
+      propertyPath: m_DeadZoneWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544025223562595941, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
+      propertyPath: m_SoftZoneWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544025223562595941, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
+      propertyPath: m_DeadZoneHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544025223562595941, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
+      propertyPath: m_SoftZoneHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4646956051048713593, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.5
@@ -1395,6 +1411,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1013931626}
   m_SourcePrefab: {fileID: 100100000, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
+--- !u!114 &1551400071 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1263085195953049099, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+  m_PrefabInstance: {fileID: 5925120370138958109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6823e788dea618a47a6b8ac040bd024b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1591309219
 GameObject:
   m_ObjectHideFlags: 0
@@ -5733,6 +5760,28 @@ CharacterController:
   m_CorrespondingSourceObject: {fileID: 5997976981102134991, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
   m_PrefabInstance: {fileID: 5925120370138958109}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1734998266 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3320452867118504746, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+  m_PrefabInstance: {fileID: 5925120370138958109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d16618c98f6b243bfb85fe706a0720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1734998267 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4793400216766540136, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+  m_PrefabInstance: {fileID: 5925120370138958109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c631a88951c8d2f4593d3abbd9284318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2106601795
 GameObject:
   m_ObjectHideFlags: 0
@@ -13805,8 +13854,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1734998261}
     - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+      propertyPath: Force
+      value: 
+      objectReference: {fileID: 1734998266}
+    - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
       propertyPath: RunSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+      propertyPath: Targeter
+      value: 
+      objectReference: {fileID: 1551400071}
+    - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+      propertyPath: WalkSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+      propertyPath: DodgeSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+      propertyPath: DodgeLength
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+      propertyPath: InputManager
+      value: 
+      objectReference: {fileID: 1734998267}
+    - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+      propertyPath: DodgeDuration
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5997976981102134991, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
       propertyPath: m_Height

@@ -26,11 +26,9 @@ public class PlayerDodgeState : PlayerBaseState
 
     public override void UpdateState(float delta)
     {
-        Vector3 movement = new Vector3();
-        movement += _player.transform.right * _dodgingDirectionInput.x * _player.DodgeLength / _player.DodgeDuration;
-        movement += _player.transform.forward * _dodgingDirectionInput.y * _player.DodgeLength / _player.DodgeDuration;
+        float dodgeAmount = _player.DodgeLength / _player.DodgeDuration;
 
-        Move(movement, delta);
+        Move(_dodgingDirectionInput * _player.MoveSpeed * dodgeAmount, delta);
 
         _remainingDodgeTime -= Time.deltaTime;
 

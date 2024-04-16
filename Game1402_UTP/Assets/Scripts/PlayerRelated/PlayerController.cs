@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float DodgeLength = 2f;
     [SerializeField]
-    public float DodgeDuration = 1.25f;
+    public float DodgeDuration = 0.35f;
     #endregion
 
     void Awake()
