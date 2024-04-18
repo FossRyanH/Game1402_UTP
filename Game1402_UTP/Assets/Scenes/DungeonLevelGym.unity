@@ -32649,6 +32649,18 @@ PrefabInstance:
       propertyPath: RunSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+      propertyPath: WalkSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+      propertyPath: DodgeLength
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518045646896540232, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
+      propertyPath: DodgeDuration
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 5997976981102134991, guid: b19d7334f27ac07499b82a99196b7df2, type: 3}
       propertyPath: m_Height
       value: 1.6

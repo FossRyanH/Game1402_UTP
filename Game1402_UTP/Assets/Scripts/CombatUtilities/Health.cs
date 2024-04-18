@@ -22,10 +22,12 @@ public class Health : MonoBehaviour
         _currentHealth = _maxHealth;
     }
 
+    // Calls the TakeDamage on whoever its needed on to decrease player or enemy health
     public void TakeDamage(int damage)
     {
         if (_currentHealth == 0) { return; }
         
+        // Sets the health so it can never go below 0
         _currentHealth = Mathf.Max(_currentHealth - damage, 0);
 
         OnTakeDamage?.Invoke();

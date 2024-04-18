@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class is mostly to hold variables that pertain to attacking be it by player or enemy.
 [Serializable]
 public class AttackData
 {

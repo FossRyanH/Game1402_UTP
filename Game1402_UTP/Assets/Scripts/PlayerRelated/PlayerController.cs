@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Handles the actual interaction from the player.
     void Interact(Collider other)
     {
         if (other.GetComponent<Interactable>() != null)
