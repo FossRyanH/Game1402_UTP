@@ -43,11 +43,13 @@ public class DoorInteractable : Interactable
 
         if (_isOpen)
         {
+            AudioManager.Instance.PlaySFX("DoorOpen");
             _doorCollider.enabled = false;
             _doorText.text = "Close Door";
         }
         else
         {
+            AudioManager.Instance.PlaySFX("DoorClose");
             _doorCollider.enabled = true;
             _doorText.text = "Open Door";
         }
