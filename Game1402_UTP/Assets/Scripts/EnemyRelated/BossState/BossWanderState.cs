@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class BossWanderState : BossBaseState
 {
-    protected Boss _boss;
+    public BossWanderState(Boss boss) : base(boss)
+    {
+        this._boss = boss;
+    }
 
     public override void EnterState()
     {
-        // Do the entry thing here.
+        base.EnterState();
+    }
+
+    public override void UpdateState(float delta)
+    {
+        base.UpdateState(delta);
     }
 }

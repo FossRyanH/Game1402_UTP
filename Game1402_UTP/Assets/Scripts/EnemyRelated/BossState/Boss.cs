@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    #region Components
+    [field:SerializeField]
+    public Health Player { get; private set; }
+    #endregion
+
+    void Awake()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
