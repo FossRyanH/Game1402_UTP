@@ -8,4 +8,10 @@ public class BossDeathState : BossBaseState
     {
         this._boss = boss;
     }
+
+    public override void EnterState()
+    {
+        _boss.Weapon.gameObject.SetActive(false);
+        _boss.BossHealth.Death();
+    }
 }

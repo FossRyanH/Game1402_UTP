@@ -23,13 +23,24 @@ public class BossWanderState : BossBaseState
         FacePlayer();
         MoveToWanderPoint(delta);
 
-        if (IsInRadius(_boss.Player.gameObject, _boss.PlayerAttackRange))
+        if (IsInRadius(_boss.Player.gameObject, _boss.PlayerAttackRange)  && _boss.IsInPhaseOne)
         {
-            _boss.StateMachine.TransitionTo(new BossAttackState(_boss));
+            ChangeTarget(_boss.Player.gameObject);
+            _boss.StateMachine.TransitionTo(new BossAttackState(_boss, 0));
+        }
+        else if (IsInRadius(_boss.Player.gameObject, _boss.PhaseTwoAttackRange) && _boss.IsInPhaseTwo)
+        {
+            ChangeTarget(_boss.Player.gameObject);
+            _boss.StateMachine.TransitionTo(new BossAttackState(_boss, 1));
+        }
+        else
+        {
+            ChangeTarget(_boss.WanderPoints[_currentWanderPoint]);
         }
         Move(delta);
     }
     
+    // Moves the enemy to the "Wander Points" Laid out for it to follow between attacking the player
     void MoveToWanderPoint(float delta)
     {
         _boss.Target = _boss.WanderPoints[_currentWanderPoint];
