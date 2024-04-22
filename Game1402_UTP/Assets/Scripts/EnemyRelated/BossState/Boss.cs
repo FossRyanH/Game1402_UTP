@@ -19,9 +19,10 @@ public class Boss : MonoBehaviour
     [field: SerializeField]
     public ForceReciever ForceReciever { get; private set; }
     public Animator Animator { get; private set; }
-    [field: SerializeField] public AttackData[] Attack { get; private set; }
+    [field: SerializeField]
     public WeaponDamage Weapon { get; private set; }
-    private WeaponHandler _weaponHandler;
+    [field: SerializeField]
+    private WeaponHandler WeaponHandler;
     #endregion
     
     #region Combat Variables
@@ -31,8 +32,11 @@ public class Boss : MonoBehaviour
     public bool IsInPhaseOne = false;
     [field: SerializeField]
     public bool IsInPhaseTwo = false;
+    public bool CanAttack = false;
     [field: SerializeField]
-    public float PhaseTwoAttackRange { get; private set; } = 7f;
+    public float PhaseOneChaseRange = 5f;
+    [field: SerializeField]
+    public float PhaseTwoChaseRange { get; private set; } = 8f;
     #endregion
     
     #region Movement Variables
@@ -63,8 +67,7 @@ public class Boss : MonoBehaviour
         ForceReciever = GetComponent<ForceReciever>();
         Controller = GetComponent<CharacterController>();
         Animator = GetComponent<Animator>();
-        _weaponHandler = GetComponent<WeaponHandler>();
-        Weapon = GetComponentInChildren<WeaponDamage>();
+        WeaponHandler = GetComponent<WeaponHandler>();
     }
     
     // Start is called before the first frame update
@@ -74,6 +77,8 @@ public class Boss : MonoBehaviour
 
         Agent.updatePosition = false;
         Agent.updateRotation = false;
+
+        CanAttack = true;
     }
 
     // Update is called once per frame
@@ -112,6 +117,7 @@ public class Boss : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, PlayerAttackRange);
-        Gizmos.DrawWireSphere(transform.position, PhaseTwoAttackRange);
+        Gizmos.DrawWireSphere(transform.position, PhaseOneChaseRange);
+        Gizmos.DrawWireSphere(transform.position, PhaseTwoChaseRange);
     }
 }

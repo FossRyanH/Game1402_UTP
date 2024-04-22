@@ -5,37 +5,69 @@ using UnityEngine;
 public class BossAttackState : BossBaseState
 {
     private float _attackStateCoolDown;
-    private float _previousFrameTime;
-    private AttackData _attack;
+    private bool _hasAttacked;
+
+    private readonly int _primaryAttackHash = Animator.StringToHash("Attack02");
+    private readonly int _bigAttackHash = Animator.StringToHash("Attack01");
+    private float _animatorDampTime = 0.1f;
+
+    private int _primaryAttackDamage = 15;
+    private int _bigAttackDamage = 25;
+    private float _knockbackDistance;
     
-    public BossAttackState(Boss boss, int attackIndex) : base(boss)
+    public BossAttackState(Boss boss) : base(boss)
     {
         this._boss = boss;
-        _attack = _boss.Attack[attackIndex];
     }
 
     public override void EnterState()
     {
-        _boss.Weapon?.SetAttack(_attack.Damage, _attack.KnockbackDistance);
-        _boss.Animator.CrossFadeInFixedTime(_attack.AttackName, _attack.AttackTransition);
-        if (_boss.IsInPhaseTwo)
+        if (!_hasAttacked)
         {
-            _attackStateCoolDown = 2f;
-            _boss.StateMachine.TransitionTo(new BossAttackState(_boss, 0));
-        }
-        else
-        {
-            _attackStateCoolDown = 0.75f;
+            _hasAttacked = true;
+            PhaseBasedAttack();
+            _boss.StartCoroutine(AttackCoolDown());
         }
     }
 
     public override void UpdateState(float delta)
     {
         Move(delta);
-        _attackStateCoolDown -= Time.fixedDeltaTime;
-        if (_attackStateCoolDown <= 0f)
+
+        if (!_hasAttacked)
         {
             _boss.StateMachine.TransitionTo(new BossWanderState(_boss));
         }
+    }
+
+    public override void ExitState()
+    {
+        _boss.CanAttack = true;
+    }
+
+    void PhaseBasedAttack()
+    {
+        if (_boss.IsInPhaseTwo && _boss.CanAttack)
+        {
+            _attackStateCoolDown = 2f;
+            _knockbackDistance = 2f;
+            _boss.MoveSpeed = _boss.ChargeSpeed;
+            _boss.Weapon.SetAttack(_bigAttackDamage, _knockbackDistance);
+            _boss.Animator.CrossFadeInFixedTime(_bigAttackHash, _animatorDampTime);
+        }
+        else if (_boss.IsInPhaseOne && _boss.CanAttack)
+        {
+            _attackStateCoolDown = 1.5f;
+            _knockbackDistance = 0.9f;
+            _boss.MoveSpeed = _boss.WanderSpeed;
+            _boss.Weapon.SetAttack(_primaryAttackDamage, _knockbackDistance);
+            _boss.Animator.CrossFadeInFixedTime(_primaryAttackHash, _animatorDampTime);
+        }
+    }
+
+    IEnumerator AttackCoolDown()
+    {
+        yield return new WaitForSeconds(_attackStateCoolDown);
+        _hasAttacked = false;
     }
 }

@@ -15,7 +15,7 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void EnterState()
     {
-        _enemy.MoveSpeed = 0.95f;
+        _enemy.MoveSpeed = 1.25f;
         _enemy.Animator.CrossFadeInFixedTime(_enemyChaseHash, _animatorDampTime);
     }
 

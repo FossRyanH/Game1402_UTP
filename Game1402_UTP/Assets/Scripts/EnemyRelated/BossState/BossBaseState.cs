@@ -37,11 +37,23 @@ public class BossBaseState : IState
         _boss.transform.rotation = Quaternion.LookRotation(lookPos);
     }
     
-    protected virtual bool IsInAttackRange()
+    protected bool IsInChaseRange(float range)
     {
         float distanceToPlayerSqr = (_boss.Player.transform.position - _boss.transform.position).sqrMagnitude;
 
-        return distanceToPlayerSqr <= Mathf.Pow(_boss.PlayerAttackRange, 2);
+        return distanceToPlayerSqr <= Mathf.Pow(range, 2);
+    }
+    
+    protected bool IsInAttackRange(float attackRange)
+    {
+        if (_boss.Player.IsDead)
+        {
+            return false;
+        }
+        
+        float distanceToPlayerSqr = (_boss.Player.transform.position - _boss.transform.position).sqrMagnitude;
+
+        return distanceToPlayerSqr <= Mathf.Pow(attackRange, 2);
     }
 
     protected float GetNormalizedTime(Animator animator, string tag)
@@ -61,16 +73,5 @@ public class BossBaseState : IState
         {
             return 0f;
         }
-    }
-
-    protected bool IsInRadius(GameObject gameObject, float distanceCheck)
-    {
-        float dist = Vector3.Distance(_boss.transform.position, gameObject.transform.position);
-        return dist < distanceCheck;
-    }
-
-    protected void ChangeTarget(GameObject target)
-    {
-        _boss.Agent.destination = target.transform.position;
     }
 }

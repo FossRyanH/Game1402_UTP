@@ -434,6 +434,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4628019349511065777, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
+      propertyPath: m_Radius
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5937060558752439252, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
+      propertyPath: WeaponHandler
+      value: 
+      objectReference: {fileID: 1225592267}
+    - target: {fileID: 5937060558752439252, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
+      propertyPath: PlayerAttackRange
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5937060558752439252, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
+      propertyPath: <Weapon>k__BackingField
+      value: 
+      objectReference: {fileID: 874825210}
     - target: {fileID: 5937060558752439252, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
       propertyPath: WanderPoints.Array.data[0]
       value: 
@@ -462,6 +478,14 @@ PrefabInstance:
       propertyPath: WanderPoints.Array.data[6]
       value: 
       objectReference: {fileID: 964246255}
+    - target: {fileID: 5937060558752439252, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
+      propertyPath: <WanderRadius>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7897063758057086192, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
+      propertyPath: <MaxHealth>k__BackingField
+      value: 140
+      objectReference: {fileID: 0}
     - target: {fileID: 8422892626600249584, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -877,6 +901,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 314539366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &874825210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7321008163684954941, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
+  m_PrefabInstance: {fileID: 655817685}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b3a9841b95c8d4f8c9b904a38190a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &903244955 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5797636150841549683, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
@@ -1224,6 +1259,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1225592267 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5290387918963014730, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
+  m_PrefabInstance: {fileID: 655817685}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638bd127a1df1a4428f2a250e99b02bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1437195950
 GameObject:
   m_ObjectHideFlags: 0

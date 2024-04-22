@@ -22,21 +22,18 @@ public class BossWanderState : BossBaseState
     {
         FacePlayer();
         MoveToWanderPoint(delta);
-
-        if (IsInRadius(_boss.Player.gameObject, _boss.PlayerAttackRange)  && _boss.IsInPhaseOne)
+        
+        if (IsInChaseRange(_boss.PhaseOneChaseRange)  && _boss.IsInPhaseOne)
         {
-            ChangeTarget(_boss.Player.gameObject);
-            _boss.StateMachine.TransitionTo(new BossAttackState(_boss, 0));
+            _boss.Target = null;
+            _boss.StateMachine.TransitionTo(new BossChaseState(_boss));
         }
-        else if (IsInRadius(_boss.Player.gameObject, _boss.PhaseTwoAttackRange) && _boss.IsInPhaseTwo)
+        else if (IsInChaseRange(_boss.PhaseTwoChaseRange) && _boss.IsInPhaseTwo)
         {
-            ChangeTarget(_boss.Player.gameObject);
-            _boss.StateMachine.TransitionTo(new BossAttackState(_boss, 1));
+            _boss.Target = null;
+            _boss.StateMachine.TransitionTo(new BossChaseState(_boss));
         }
-        else
-        {
-            ChangeTarget(_boss.WanderPoints[_currentWanderPoint]);
-        }
+        
         Move(delta);
     }
     
@@ -61,5 +58,16 @@ public class BossWanderState : BossBaseState
         }
 
         _boss.Agent.velocity = _boss.Controller.velocity;
+    }
+    
+    bool IsInRadius(GameObject gameObject, float distanceCheck)
+    {
+        float dist = Vector3.Distance(_boss.transform.position, gameObject.transform.position);
+        return dist < distanceCheck;
+    }
+    
+    void ChangeTarget(GameObject target)
+    {
+        _boss.Agent.destination = target.transform.position;
     }
 }
