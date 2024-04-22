@@ -421,11 +421,6 @@ Transform:
   - {fileID: 1591309225}
   m_Father: {fileID: 924909230}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!1 &465708645 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 517885556391273832, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-  m_PrefabInstance: {fileID: 1851633569337611398}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &655817685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -877,38 +872,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 314539366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &903244955 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5797636150841549683, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-  m_PrefabInstance: {fileID: 1851633569337611398}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465708645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 638bd127a1df1a4428f2a250e99b02bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!135 &903244956
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465708645}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &924909229
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,49 +936,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 314539366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1003768129 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6581142281498739664, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-  m_PrefabInstance: {fileID: 1851633569337611398}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1003768132 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4088593168518521528, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-  m_PrefabInstance: {fileID: 1851633569337611398}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003768129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6b3a9841b95c8d4f8c9b904a38190a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &1003768133
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003768129}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1013931622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8646265555801231396, guid: 0cd209fca62a5144ca409ff2c819fbef, type: 3}
@@ -14052,38 +13972,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-      propertyPath: <Weapon>k__BackingField
-      value: 
-      objectReference: {fileID: 1003768132}
-    - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-      propertyPath: <WeaponHandler>k__BackingField
-      value: 
-      objectReference: {fileID: 903244955}
-    - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-      propertyPath: <Attack>k__BackingField.<Damage>k__BackingField
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-      propertyPath: <Attack>k__BackingField.<ForceTime>k__BackingField
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-      propertyPath: <Attack>k__BackingField.<AttackName>k__BackingField
-      value: Attack02
-      objectReference: {fileID: 0}
-    - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-      propertyPath: <Attack>k__BackingField.<ComboAttackTime>k__BackingField
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-      propertyPath: <Attack>k__BackingField.<ComboStateIndex>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3288827647606283056, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-      propertyPath: <Attack>k__BackingField.<KnockbackDistance>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4347618434694196536, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14124,18 +14012,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5602913167818527044, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-    - {fileID: 7358164374481464142, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 517885556391273832, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 903244956}
-    - targetCorrespondingSourceObject: {fileID: 6581142281498739664, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1003768133}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24fd0c2677652c943a249212b48c17d7, type: 3}
 --- !u!1001 &5925120370138958109
 PrefabInstance:

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    string scene = "LevelGym";
+    string scene = "DungeonLevelGym";
     [SerializeField]
     GameObject mainMenuUI;
     [SerializeField]

@@ -13,7 +13,7 @@ public class EnemyAttackState : EnemyBaseState
     
     public override void EnterState()
     {
-        _enemy.Weapon.SetAttack(_enemy.Attack.Damage, _enemy.Attack.KnockbackDistance);
+        _enemy.Weapon.SetAttack(10, 0.25f);
         _enemy.Animator.CrossFadeInFixedTime(_enemy.Attack.AttackName, _enemy.Attack.AttackTransition);
     }
 

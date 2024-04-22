@@ -1420,7 +1420,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  <WanderRadius>k__BackingField: 1
+  - {fileID: 0}
+  <WanderRadius>k__BackingField: 2
 --- !u!114 &775311818545460560
 MonoBehaviour:
   m_ObjectHideFlags: 0
