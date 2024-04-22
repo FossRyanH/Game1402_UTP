@@ -10,43 +10,43 @@ public class Health : MonoBehaviour
     public event Action OnTakeDamage;
     #endregion
     
-    [SerializeField] 
-    private int _maxHealth = 100;
-    [SerializeField]
-    private int _currentHealth;
+    [field: SerializeField] 
+    public int MaxHealth { get; private set; } =  100;
+    [field: SerializeField]
+    public int CurrentHealth;
 
-    public bool IsDead => _currentHealth == 0;
+    public bool IsDead => CurrentHealth == 0;
 
     private void Awake()
     {
-        _currentHealth = _maxHealth;
+        CurrentHealth = MaxHealth;
     }
 
     // Calls the TakeDamage on whoever its needed on to decrease player or enemy health
     public void TakeDamage(int damage)
     {
-        if (_currentHealth == 0) { return; }
+        if (CurrentHealth == 0) { return; }
         
         // Sets the health so it can never go below 0
-        _currentHealth = Mathf.Max(_currentHealth - damage, 0);
+        CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
 
         OnTakeDamage?.Invoke();
 
-        if (_currentHealth == 0)
+        if (CurrentHealth == 0)
         {
             OnDie?.Invoke();
         }
         
-        Debug.Log(_currentHealth);
+        Debug.Log(CurrentHealth);
     }
 
     public void RecoverHealth(int amount)
     {
-        if (_currentHealth == _maxHealth)
+        if (CurrentHealth == MaxHealth)
         {
             return;
         }
-        _currentHealth = Mathf.Max(_currentHealth + amount, _maxHealth);
+        CurrentHealth = Mathf.Max(CurrentHealth + amount, MaxHealth);
     }
 
     // This function is for debug purposes only.

@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossDeathState : MonoBehaviour
+public class BossDeathState : BossBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public BossDeathState(Boss boss) : base(boss)
     {
-        
+        this._boss = boss;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void EnterState()
     {
-        
+        _boss.Weapon.gameObject.SetActive(false);
+        _boss.BossHealth.Death();
     }
 }

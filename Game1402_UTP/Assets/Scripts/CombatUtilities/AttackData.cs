@@ -24,7 +24,7 @@ public class AttackData
     [field: SerializeField]
     public float Force { get; private set; }
     [field: SerializeField]
-    public int Damage { get; private set; } = 35;
+    public int Damage { get; private set; } = 25;
     [field: SerializeField]
     public float KnockbackDistance { get; private set; }
     #endregion
