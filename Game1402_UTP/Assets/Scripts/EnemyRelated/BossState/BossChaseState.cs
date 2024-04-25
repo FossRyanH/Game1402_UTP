@@ -28,24 +28,24 @@ public class BossChaseState : BossBaseState
         {
             if (!IsInChaseRange(_boss.PhaseOneChaseRange))
             {
-                _boss.StateMachine.TransitionTo(new BossWanderState(_boss));
+                _boss.stateMachine.TransitionTo(new BossWanderState(_boss));
                 return;
             }
             else if (IsInAttackRange(_boss.PlayerAttackRange))
             {
-                _boss.StateMachine.TransitionTo(new BossAttackState(_boss));
+                _boss.stateMachine.TransitionTo(new BossAttackState(_boss));
             }
         }
         else if (_boss.IsInPhaseTwo)
         {
             if (!IsInChaseRange(_boss.PhaseTwoChaseRange))
             {
-                _boss.StateMachine.TransitionTo(new BossWanderState(_boss));
+                _boss.stateMachine.TransitionTo(new BossWanderState(_boss));
                 return;
             }
             else if (IsInAttackRange(_boss.PlayerAttackRange))
             {
-                _boss.StateMachine.TransitionTo(new BossAttackState(_boss));
+                _boss.stateMachine.TransitionTo(new BossAttackState(_boss));
             }
         }
 

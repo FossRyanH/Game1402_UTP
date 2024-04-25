@@ -26,12 +26,12 @@ public class BossWanderState : BossBaseState
         if (IsInChaseRange(_boss.PhaseOneChaseRange)  && _boss.IsInPhaseOne)
         {
             _boss.Target = null;
-            _boss.StateMachine.TransitionTo(new BossChaseState(_boss));
+            _boss.stateMachine.TransitionTo(new BossChaseState(_boss));
         }
         else if (IsInChaseRange(_boss.PhaseTwoChaseRange) && _boss.IsInPhaseTwo)
         {
             _boss.Target = null;
-            _boss.StateMachine.TransitionTo(new BossChaseState(_boss));
+            _boss.stateMachine.TransitionTo(new BossChaseState(_boss));
         }
         
         Move(delta);

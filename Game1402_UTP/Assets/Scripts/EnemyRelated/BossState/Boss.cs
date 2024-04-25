@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour
     #region Components
     [field: SerializeField]
     public Health Player { get; private set; }
-    public BossStateMachine StateMachine { get; private set; }
+    public BossStateMachine stateMachine { get; private set; }
     [field: SerializeField]
     public Health BossHealth { get; private set; }
     [field: SerializeField]
@@ -56,10 +56,11 @@ public class Boss : MonoBehaviour
     void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+        stateMachine = new BossStateMachine();
 
-        if (StateMachine == null)
+        if (stateMachine == null)
         {
-            StateMachine = new BossStateMachine();
+            
         }
 
         BossHealth = GetComponent<Health>();
@@ -73,7 +74,7 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StateMachine.InitializeState(new BossWanderState(this));
+        stateMachine.InitializeState(new BossWanderState(this));
 
         Agent.updatePosition = false;
         Agent.updateRotation = false;
@@ -84,7 +85,7 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StateMachine.Update();
+        stateMachine.Update();
         
         if (BossHealth.CurrentHealth >= (BossHealth.MaxHealth / 2))
         {
@@ -110,7 +111,7 @@ public class Boss : MonoBehaviour
 
     void HandleDeath()
     {
-        StateMachine.TransitionTo(new BossDeathState(this));
+        stateMachine.TransitionTo(new BossDeathState(this));
     }
 
     void OnDrawGizmos()

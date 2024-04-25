@@ -17,7 +17,7 @@ public class PlayerTargetingState : PlayerBaseState
 
     public override void EnterState()
     {
-        _player.InputManager.CancelEvent += OnCancel;
+                        _player.InputManager.CancelEvent += OnCancel;
         _player.InputManager.DodgeEvent += HandleDodge;
         _player.Animator.CrossFadeInFixedTime(_combatMovementHash, _animatorDampTime);
         _player.MoveSpeed = _player.WalkSpeed;

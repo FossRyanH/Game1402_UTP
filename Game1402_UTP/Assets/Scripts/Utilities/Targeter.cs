@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// The logic here has some problems. You add elements to a list of potential objects to hit, but never have a way of getting rid of them, which means that you then get an error when trying to do this...stopping you from ever being able to target.
+/// </summary>
 public class Targeter : MonoBehaviour
 {
     private List<Target> _targets = new List<Target>();
@@ -23,7 +25,10 @@ public class Targeter : MonoBehaviour
             _targets.Add(target);
         }
     }
-    
+    /// <summary>
+    /// Sean question: what happens if your target dies? Doesn't it just stay in the list forever?
+    /// </summary>
+    /// <param name="other"></param>
     // If the object leaving the targeting sphere had the Target object, remove it from the list.
     private void OnTriggerExit(Collider other)
     {
@@ -32,7 +37,10 @@ public class Targeter : MonoBehaviour
             _targets.Remove(target);
         }
     }
-
+/// <summary>
+/// Code here has been broken for a long, long time. About a month. Only works on one enemy. Null checked it. Be more careful in your gyms.
+/// </summary>
+/// <returns></returns>
     public bool HasTarget()
     {
         if (_targets.Count == 0)
@@ -45,6 +53,7 @@ public class Targeter : MonoBehaviour
 
         foreach (Target target in _targets)
         {
+            if (target == null) continue;
             Vector2 viewPos = _camera.WorldToViewportPoint(target.transform.position);
 
             if (viewPos.x < 0f || viewPos.x > 1f | viewPos.y < 0f || viewPos.y > 1f)
@@ -69,6 +78,11 @@ public class Targeter : MonoBehaviour
         return true;
     }
 
+    void Update()
+    {
+        
+        
+    }
     public void CancelTarget()
     {
         CurrentTarget = null;

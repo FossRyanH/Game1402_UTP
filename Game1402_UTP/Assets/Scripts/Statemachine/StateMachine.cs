@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class StateMachine
 {
-    // Allows the "CurrentState" to be retrieved from anywhere in the state machine and set priovately elsewhere.
+    // Allows the "CurrentState" to be retrieved from anywhere in the state machine and set privately elsewhere.
     public IState CurrentState { get; private set; }
 
     // Sets the character's first state, whatever that may be.

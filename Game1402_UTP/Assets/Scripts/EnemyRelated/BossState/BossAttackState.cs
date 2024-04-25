@@ -36,7 +36,7 @@ public class BossAttackState : BossBaseState
 
         if (!_hasAttacked)
         {
-            _boss.StateMachine.TransitionTo(new BossWanderState(_boss));
+            _boss.stateMachine.TransitionTo(new BossWanderState(_boss));
         }
     }
 
